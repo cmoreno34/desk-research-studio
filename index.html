@@ -111,6 +111,47 @@ pre.prompt .lab{color:var(--mono-dim)}
 
 footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 44px;color:var(--soft);font-size:13px}
 footer b{color:var(--clay)}
+
+/* ---- worksheet ---- */
+.ws{margin:44px 0 10px;border-top:2px solid var(--leaf);padding-top:26px}
+.ws h2.wt{font-family:Fraunces,serif;font-weight:900;font-size:26px;margin:0 0 4px}
+.ws .sub{color:var(--soft);font-size:14px;margin:0 0 18px;max-width:72ch}
+.ws-head{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.ws-head label{display:flex;flex-direction:column;gap:5px;font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.ws-head input{border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:400 14px Archivo;background:var(--panel);color:var(--ink);min-width:240px}
+.ws-block{margin:24px 0}
+.ws-block>h3{font:700 13px Archivo;letter-spacing:.07em;text-transform:uppercase;color:var(--leaf-ink);margin:0 0 4px;display:flex;align-items:center;gap:9px}
+.ws-block>h3 .n{font-family:Fraunces,serif;font-weight:900;font-size:18px;color:#fff;background:var(--leaf);width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center}
+.ws-block .q{color:var(--soft);font-size:12.5px;margin:0 0 10px}
+table.log{width:100%;border-collapse:collapse}
+table.log th{background:var(--sage);color:var(--ink);font:700 10.5px Archivo;letter-spacing:.03em;text-align:left;padding:7px 8px;border:1px solid var(--line)}
+table.log td{border:1px solid var(--line);padding:0}
+table.log input{width:100%;border:0;background:transparent;padding:8px;font:400 12.5px Archivo;color:var(--ink)}
+table.log input:focus{outline:2px solid var(--leaf);outline-offset:-2px}
+.addrow{margin-top:9px;background:var(--chip);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 14px;font:600 12.5px Archivo;cursor:pointer}
+.addrow:hover{border-color:var(--leaf);color:var(--leaf-ink)}
+.wsfield{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:11px 13px;font:400 14px/1.5 Archivo;resize:none;overflow:hidden;min-height:50px}
+.wsfield:focus{outline:none;border-color:var(--leaf)}
+.find{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.find input.h{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;font:700 14px Archivo;color:var(--ink);padding:2px 0 8px;margin-bottom:8px}
+.find input.h:focus{outline:none;border-color:var(--leaf)}
+.wsbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:22px 0 0}
+.pdfbtn{background:var(--leaf);color:#fff;border:0;border-radius:10px;padding:13px 24px;font:700 15px Archivo;cursor:pointer}
+.pdfbtn:hover{filter:brightness(1.06)}
+.saved{font-size:12.5px;color:var(--soft)}
+.printhead{display:none}
+@media print{
+  @page{margin:14mm}
+  header, .case, .eyebrow, .presets, .grid, .tools, footer, .addrow, .wsbar{display:none!important}
+  body{background:#fff;color:#000;padding:0 6mm}
+  .ws{border:0;margin:0;padding:0}
+  .printhead{display:block;margin-bottom:14px;border-bottom:2px solid #2f6b4f;padding-bottom:8px}
+  .ws h2.wt{display:none}
+  .ws .sub{display:none}
+  .ws-block{break-inside:avoid;margin:14px 0}
+  .wsfield,.find,table.log input,.ws-head input,.find input.h,table.log th{border-color:#aaa!important;background:#fff!important;color:#000!important}
+  .ws-block>h3 .n{background:#2f6b4f!important;color:#fff!important}
+}
 </style>
 
 </head>
@@ -155,6 +196,60 @@ footer b{color:var(--clay)}
   </div>
   <div class="toolgrid" id="tools"></div>
 </div>
+
+<section class="ws" id="worksheet">
+  <div class="printhead">
+    <div style="font:700 12px Archivo;letter-spacing:.1em;text-transform:uppercase;color:#2f6b4f">Estudios de Mercado I · Tema 2 · Secondary research &amp; desk research</div>
+    <div style="font:900 22px Fraunces,serif;margin-top:2px">Desk research worksheet — FreshlyCosmetics anti-aging</div>
+  </div>
+  <h2 class="wt">Your worksheet</h2>
+  <p class="sub">Do the research with the tools above, then fill this in. Click <b>Save as PDF</b> to hand it in. Everything you type is saved in this browser automatically — you can close the page and come back.</p>
+
+  <div class="ws-head">
+    <label>Name / group <input id="w_name" placeholder="e.g. Group 3 — A. García, L. Ruiz"></label>
+    <label>Date <input id="w_date" placeholder="dd/mm/yyyy"></label>
+  </div>
+
+  <div class="ws-block">
+    <h3><span class="n">A</span> Source log</h3>
+    <p class="q">One row per source. Record the fieldwork date and the definition, keep the link, and score each 1–5 (reliability · representativeness · currency — see 2.2).</p>
+    <table class="log"><thead><tr>
+      <th style="width:20%">Source</th><th style="width:26%">What it says (key figure)</th><th style="width:24%">Fieldwork date &amp; definition</th><th style="width:20%">Link</th><th style="width:10%">Score /5</th>
+    </tr></thead><tbody id="logbody"></tbody></table>
+    <button class="addrow" id="addrow" type="button">+ Add source</button>
+  </div>
+
+  <div class="ws-block">
+    <h3><span class="n">B</span> Which source would you trust?</h3>
+    <p class="q">From the warm-up (Kantar study / beauty blog / Brand X release): which ONE figure do you put in front of the client, and what do you tell them about the other two?</p>
+    <textarea class="wsfield" id="w_trust" placeholder="I would cite … because … . I'd discard/caveat the other two because …"></textarea>
+  </div>
+
+  <div class="ws-block">
+    <h3><span class="n">C</span> Findings — 3 to 5, each a full sentence</h3>
+    <p class="q">Each finding is a sentence backed by 2+ sources. Not “Market size” but “The natural anti-aging category is small but growing 4× faster than the mass market it takes share from.”</p>
+    <div id="findings"></div>
+    <button class="addrow" id="addfind" type="button">+ Add finding</button>
+  </div>
+
+  <div class="ws-block">
+    <h3><span class="n">D</span> What is still unknown → the survey’s questions</h3>
+    <p class="q">The real deliverable: the gaps, written as the questions your €8,000 survey should ask (not as apologies).</p>
+    <textarea class="wsfield" id="w_gaps" placeholder="1) …  2) …  3) …"></textarea>
+  </div>
+
+  <div class="ws-block">
+    <h3><span class="n">E</span> AI use declaration</h3>
+    <p class="q">Which prompt(s), for which step, and how you verified every figure against the original source.</p>
+    <textarea class="wsfield" id="w_ai" placeholder="I used the ‘market sizing’ preset on … ; I checked each figure against …"></textarea>
+  </div>
+
+  <div class="wsbar">
+    <button class="pdfbtn" id="pdfbtn" type="button">⬇  Save as PDF</button>
+    <span class="saved" id="savedmsg">Saved automatically in this browser</span>
+    <button class="addrow" id="clearws" type="button">Clear worksheet</button>
+  </div>
+</section>
 
 <footer>
   <b>Verify before you paste.</b> AI names the figure to trust poorly — that is the 2.2 judgement, and it is yours. Find the sources yourself, attach the documents, make the model build the matrix (not the prose), ask it to attack its own output, and check every number against the original. Declare your AI use in the practical. A fabricated citation scores zero.
@@ -310,6 +405,42 @@ tb.onclick=()=>{const cur=root.getAttribute('data-theme');
   const next=cur==='dark'?'light':cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');
   root.setAttribute('data-theme',next);};
 render();
+
+// ---- worksheet (fill in, autosave, export PDF) ----
+const WS_KEY="mkt3600_tema2_ws";
+const logbody=document.getElementById('logbody'), findings=document.getElementById('findings');
+function autogrow(t){t.style.height='auto';t.style.height=(t.scrollHeight+2)+'px';}
+function val(id){const e=document.getElementById(id);return e?e.value:'';}
+function logRow(v){v=v||{};const tr=document.createElement('tr');
+  ['source','claim','date','link','score'].forEach(k=>{const td=document.createElement('td');const inp=document.createElement('input');
+    inp.dataset.k=k;inp.value=v[k]||'';if(k==='score'){inp.style.textAlign='center';}
+    inp.addEventListener('input',saveWs);td.appendChild(inp);tr.appendChild(td);});
+  logbody.appendChild(tr);}
+function findRow(v){v=v||{};const d=document.createElement('div');d.className='find';
+  const h=document.createElement('input');h.className='h';h.placeholder='Finding as a sentence…';h.dataset.k='h';h.value=v.h||'';
+  const e=document.createElement('textarea');e.className='wsfield';e.placeholder='Evidence: which sources, which figures.';e.dataset.k='e';e.value=v.e||'';e.rows=2;
+  h.addEventListener('input',saveWs);e.addEventListener('input',()=>{autogrow(e);saveWs();});
+  d.appendChild(h);d.appendChild(e);findings.appendChild(d);autogrow(e);}
+function collect(){
+  const log=[...logbody.querySelectorAll('tr')].map(tr=>{const o={};tr.querySelectorAll('input').forEach(i=>o[i.dataset.k]=i.value);return o;});
+  const finds=[...findings.querySelectorAll('.find')].map(d=>({h:d.querySelector('input.h').value,e:d.querySelector('textarea').value}));
+  return {name:val('w_name'),date:val('w_date'),trust:val('w_trust'),gaps:val('w_gaps'),ai:val('w_ai'),log,finds};}
+let saveT;
+function saveWs(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(WS_KEY,JSON.stringify(collect()));
+  document.getElementById('savedmsg').textContent='Saved ✓ '+new Date().toLocaleTimeString();}catch(_){}} ,300);}
+(function initWs(){
+  let s={};try{s=JSON.parse(localStorage.getItem(WS_KEY)||'{}');}catch(_){}
+  [['w_name','name'],['w_date','date'],['w_trust','trust'],['w_gaps','gaps'],['w_ai','ai']].forEach(([id,k])=>{
+    const el=document.getElementById(id);if(!el)return;el.value=s[k]||'';
+    if(el.tagName==='TEXTAREA'){el.addEventListener('input',()=>{autogrow(el);saveWs();});autogrow(el);}
+    else{el.addEventListener('input',saveWs);}});
+  ((s.log&&s.log.length)?s.log:[{},{},{},{},{}]).forEach(logRow);
+  ((s.finds&&s.finds.length)?s.finds:[{},{},{}]).forEach(findRow);
+  document.getElementById('addrow').onclick=()=>{logRow();saveWs();};
+  document.getElementById('addfind').onclick=()=>{findRow();saveWs();};
+  document.getElementById('pdfbtn').onclick=()=>{if(!val('w_date')){const d=document.getElementById('w_date');if(d)d.value=new Date().toLocaleDateString();}window.print();};
+  document.getElementById('clearws').onclick=()=>{if(confirm('Clear the whole worksheet? This cannot be undone.')){localStorage.removeItem(WS_KEY);location.reload();}};
+})();
 </script>
 
 </body>
