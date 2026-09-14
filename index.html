@@ -13,6 +13,7 @@
   --leaf:#2f6b4f; --leaf-ink:#21503b; --clay:#bd5f3f; --line:#ddd8c9;
   --sage:#e7ece3; --chip:#eef1e8; --shadow:0 1px 2px rgba(23,37,29,.06),0 8px 24px rgba(23,37,29,.06);
   --mono-bg:#14211b; --mono-ink:#e8efe6; --mono-dim:#8fb09c;
+  --a-free:#2c7a4b; --a-freemium:#b0730f; --a-paid:#6d6a86;
 }
 :root:not([data-theme="light"]) { }
 @media (prefers-color-scheme: dark){
@@ -21,6 +22,7 @@
     --leaf:#6bbd93; --leaf-ink:#8fd3ac; --clay:#e08a68; --line:#2a352d;
     --sage:#1e2922; --chip:#212c25; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
     --mono-bg:#0c130f; --mono-ink:#dfe9df; --mono-dim:#6d8b78;
+    --a-free:#6bbd93; --a-freemium:#e0a44f; --a-paid:#b0a6d6;
   }
 }
 :root[data-theme="dark"]{
@@ -28,6 +30,7 @@
   --leaf:#6bbd93; --leaf-ink:#8fd3ac; --clay:#e08a68; --line:#2a352d;
   --sage:#1e2922; --chip:#212c25; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
   --mono-bg:#0c130f; --mono-ink:#dfe9df; --mono-dim:#6d8b78;
+  --a-free:#6bbd93; --a-freemium:#e0a44f; --a-paid:#b0a6d6;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--ground);color:var(--ink);
@@ -95,6 +98,13 @@ pre.prompt .lab{color:var(--mono-dim)}
 .tool .tn{font-weight:700;font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
 .tool .tn .ar{color:var(--leaf);font-size:13px}
 .tool .td{color:var(--soft);font-size:12.5px;margin-top:3px}
+.badge{display:inline-block;margin-top:9px;font:600 10.5px Archivo;letter-spacing:.04em;
+  padding:2px 9px;border-radius:999px;color:var(--b);
+  background:color-mix(in srgb,var(--b) 15%,transparent);
+  border:1px solid color-mix(in srgb,var(--b) 45%,transparent)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px;font-size:12.5px;color:var(--soft)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
 
 footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 44px;color:var(--soft);font-size:13px}
 footer b{color:var(--clay)}
@@ -133,7 +143,12 @@ footer b{color:var(--clay)}
 </div>
 
 <div class="tools">
-  <p class="eyebrow" style="margin-bottom:0">The public-data toolkit</p>
+  <p class="eyebrow" style="margin-bottom:6px">The public-data toolkit</p>
+  <div class="legend">
+    <span><i style="background:var(--a-free)"></i>Free — open access</span>
+    <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
+    <span><i style="background:var(--a-paid)"></i>Subscription — the university may license it</span>
+  </div>
   <div class="toolgrid" id="tools"></div>
 </div>
 
@@ -179,35 +194,37 @@ const PRESETS=[
    format:"(1) executive summary, (2) competitor comparison table, (3) the 5 biggest opportunities ranked by impact × feasibility, (4) the list of what is still UNKNOWN, written as the questions a primary survey should ask.",
    criteria:"Every figure must trace to an attachment; name what is missing rather than filling it."}}
 ];
+// access: "free" (open, no cost) · "freemium" (usable free tier, paid to go deep) · "paid" (subscription)
 const TOOLS=[
  ["Market reports & databases",[
-   ["Statista","Sizing & benchmarking","https://www.statista.com"],
-   ["Euromonitor","Market data by category","https://www.euromonitor.com"],
-   ["Mintel","Consumer & trend research","https://www.mintel.com"],
-   ["IBISWorld","Sector financials","https://www.ibisworld.com"]]],
+   ["Statista","Sizing & benchmarking","https://www.statista.com","paid"],
+   ["Euromonitor","Market data by category","https://www.euromonitor.com","paid"],
+   ["Mintel","Consumer & trend research","https://www.mintel.com","paid"],
+   ["IBISWorld","Sector financials","https://www.ibisworld.com","paid"]]],
  ["Institutional",[
-   ["INE (España)","Demography, prices, society","https://www.ine.es"],
-   ["Eurostat","Comparable EU stats","https://ec.europa.eu/eurostat"],
-   ["Banco de España","Macro & financial series","https://www.bde.es"],
-   ["ICEX","Foreign markets","https://www.icex.es"],
-   ["datos.gob.es","Open public data","https://datos.gob.es"],
-   ["CNMV","Company filings","https://www.cnmv.es"]]],
+   ["INE (España)","Demography, prices, society","https://www.ine.es","free"],
+   ["Eurostat","Comparable EU stats","https://ec.europa.eu/eurostat","free"],
+   ["Banco de España","Macro & financial series","https://www.bde.es","free"],
+   ["ICEX","Foreign markets","https://www.icex.es","free"],
+   ["datos.gob.es","Open public data","https://datos.gob.es","free"],
+   ["CNMV","Company filings","https://www.cnmv.es","free"]]],
  ["Digital behaviour & trends",[
-   ["Google Trends","Search interest","https://trends.google.es"],
-   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/"],
-   ["AnswerThePublic","Real questions","https://answerthepublic.com"],
-   ["Exploding Topics","Emerging trends","https://explodingtopics.com"],
-   ["SimilarWeb","Web-traffic analytics","https://www.similarweb.com"],
-   ["SEMrush","SEO & keywords","https://www.semrush.com"],
-   ["Talkwalker","Social listening","https://www.talkwalker.com"]]],
+   ["Google Trends","Search interest","https://trends.google.es","free"],
+   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free"],
+   ["AnswerThePublic","Real questions","https://answerthepublic.com","freemium"],
+   ["Exploding Topics","Emerging trends","https://explodingtopics.com","freemium"],
+   ["SimilarWeb","Web-traffic analytics","https://www.similarweb.com","freemium"],
+   ["SEMrush","SEO & keywords","https://www.semrush.com","freemium"],
+   ["Talkwalker","Social listening","https://www.talkwalker.com","paid"]]],
  ["AI assistants",[
-   ["ChatGPT","Summarise & compare","https://chatgpt.com"],
-   ["Claude","Long-document analysis","https://claude.ai"],
-   ["Perplexity","Search with citations","https://www.perplexity.ai"],
-   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com"],
-   ["Elicit","Literature review","https://elicit.com"],
-   ["Consensus","Evidence-based answers","https://consensus.app"]]]
+   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium"],
+   ["Claude","Long-document analysis","https://claude.ai","freemium"],
+   ["Perplexity","Search with citations","https://www.perplexity.ai","freemium"],
+   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free"],
+   ["Elicit","Literature review","https://elicit.com","freemium"],
+   ["Consensus","Evidence-based answers","https://consensus.app","freemium"]]]
 ];
+const ACCESS={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
 
 const state={}; let active=null, curLink=null;
 FIELDS.forEach(f=>state[f.k]=f.v);
@@ -237,9 +254,11 @@ PRESETS.forEach(p=>{
 const toolsEl=document.getElementById('tools');
 TOOLS.forEach(([g,items])=>{
   const h=document.createElement('div');h.className='group';h.textContent=g;toolsEl.appendChild(h);
-  items.forEach(([n,d,u])=>{
+  items.forEach(([n,d,u,ac])=>{
     const a=document.createElement('a');a.className='tool';a.href=u;a.target='_blank';a.rel='noopener';
-    a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div><div class="td">${d}</div>`;
+    const [lab,tok]=ACCESS[ac];
+    a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div><div class="td">${d}</div>`+
+      `<span class="badge" style="--b:var(${tok})">${lab}</span>`;
     toolsEl.appendChild(a);
   });
 });
