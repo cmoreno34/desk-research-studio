@@ -144,6 +144,7 @@ footer b{color:var(--clay)}
 
 <div class="tools">
   <p class="eyebrow" style="margin-bottom:6px">The public-data toolkit</p>
+  <p style="margin:0 0 10px;font-size:13.5px;color:var(--soft);max-width:70ch">You can complete the whole activity with the <b style="color:var(--a-free)">free</b> sources — start with the sector associations and the institutional data. Subscription tools add depth if the university licenses them. International student? Use the international institutional block and your own country's stats office; only Eurostat and the global bodies are cross-country.</p>
   <div class="legend">
     <span><i style="background:var(--a-free)"></i>Free — open access</span>
     <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
@@ -196,18 +197,32 @@ const PRESETS=[
 ];
 // access: "free" (open, no cost) · "freemium" (usable free tier, paid to go deep) · "paid" (subscription)
 const TOOLS=[
- ["Market reports & databases",[
+ ["Sector & associations — FREE (do the activity with these)",[
+   ["Cosmetics Europe","EU cosmetics market data & reports","https://cosmeticseurope.eu","free"],
+   ["STANPA","Spanish cosmetics & perfumery association","https://www.stanpa.com","free"],
+   ["Company annual reports","Segment revenue & strategy, from investor pages","https://www.google.com/search?q=annual+report+investor+relations","free"],
+   ["Trade press","Sector news & free summaries","https://www.google.com/search?q=cosmetics+market+report+2024","free"]]],
+ ["Market reports & databases — subscription (optional depth)",[
    ["Statista","Sizing & benchmarking","https://www.statista.com","paid"],
    ["Euromonitor","Market data by category","https://www.euromonitor.com","paid"],
    ["Mintel","Consumer & trend research","https://www.mintel.com","paid"],
    ["IBISWorld","Sector financials","https://www.ibisworld.com","paid"]]],
- ["Institutional",[
+ ["Institutional — international (free)",[
+   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free"],
+   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free"],
+   ["World Bank","Global development indicators","https://data.worldbank.org","free"],
+   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free"],
+   ["UN Data","Global statistics hub","https://data.un.org","free"],
+   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free"],
+   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com","free"],
+   ["National stats offices","Your country's INE — ONS (UK), Census (US), Destatis (DE)…","https://unstats.un.org/home/nso_sites/","free"]]],
+ ["Institutional — Spain (free)",[
    ["INE (España)","Demography, prices, society","https://www.ine.es","free"],
-   ["Eurostat","Comparable EU stats","https://ec.europa.eu/eurostat","free"],
    ["Banco de España","Macro & financial series","https://www.bde.es","free"],
    ["ICEX","Foreign markets","https://www.icex.es","free"],
    ["datos.gob.es","Open public data","https://datos.gob.es","free"],
-   ["CNMV","Company filings","https://www.cnmv.es","free"]]],
+   ["CNMV","Listed-company filings","https://www.cnmv.es","free"],
+   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free"]]],
  ["Digital behaviour & trends",[
    ["Google Trends","Search interest","https://trends.google.es","free"],
    ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free"],
