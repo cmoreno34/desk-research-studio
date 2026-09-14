@@ -98,6 +98,9 @@ pre.prompt .lab{color:var(--mono-dim)}
 .tool .tn{font-weight:700;font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
 .tool .tn .ar{color:var(--leaf);font-size:13px}
 .tool .td{color:var(--soft);font-size:12.5px;margin-top:3px}
+.tool .try{margin-top:8px;font-size:11.5px;line-height:1.4;color:var(--ink);
+  background:var(--chip);border-left:2px solid var(--leaf);border-radius:0 6px 6px 0;padding:6px 9px}
+.tool .try b{color:var(--leaf-ink);font-weight:700}
 .badge{display:inline-block;margin-top:9px;font:600 10.5px Archivo;letter-spacing:.04em;
   padding:2px 9px;border-radius:999px;color:var(--b);
   background:color-mix(in srgb,var(--b) 15%,transparent);
@@ -195,49 +198,49 @@ const PRESETS=[
    format:"(1) executive summary, (2) competitor comparison table, (3) the 5 biggest opportunities ranked by impact × feasibility, (4) the list of what is still UNKNOWN, written as the questions a primary survey should ask.",
    criteria:"Every figure must trace to an attachment; name what is missing rather than filling it."}}
 ];
-// access: "free" (open, no cost) · "freemium" (usable free tier, paid to go deep) · "paid" (subscription)
+// [name, description, url, access, TRY — what to actually search/enter for this case]
 const TOOLS=[
  ["Sector & associations — FREE (do the activity with these)",[
-   ["Cosmetics Europe","EU cosmetics market data & reports","https://cosmeticseurope.eu","free"],
-   ["STANPA","Spanish cosmetics & perfumery association","https://www.stanpa.com","free"],
-   ["Company annual reports","Segment revenue & strategy, from investor pages","https://www.google.com/search?q=annual+report+investor+relations","free"],
-   ["Trade press","Sector news & free summaries","https://www.google.com/search?q=cosmetics+market+report+2024","free"]]],
+   ["Cosmetics Europe","EU cosmetics market data & reports","https://cosmeticseurope.eu","free","Open 'Market data' → EU cosmetics value & growth; natural/organic split"],
+   ["STANPA","Spanish cosmetics & perfumery association","https://www.stanpa.com","free","Search 'mercado cosmética natural España' + the annual report (memoria)"],
+   ["Company annual reports","Segment revenue & strategy, from investor pages","https://www.google.com/search?q=Puig+annual+report+skincare","free","Search 'Puig annual report' / 'L'Oréal registration document' → skincare segment"],
+   ["Trade press","Sector news & free summaries","https://www.google.com/search?q=mercado+cosm%C3%A9tica+natural+Espa%C3%B1a+2024+informe","free","Search 'mercado cosmética natural España 2024 informe'"]]],
  ["Market reports & databases — subscription (optional depth)",[
-   ["Statista","Sizing & benchmarking","https://www.statista.com","paid"],
-   ["Euromonitor","Market data by category","https://www.euromonitor.com","paid"],
-   ["Mintel","Consumer & trend research","https://www.mintel.com","paid"],
-   ["IBISWorld","Sector financials","https://www.ibisworld.com","paid"]]],
+   ["Statista","Sizing & benchmarking","https://www.statista.com","paid","Search 'natural cosmetics Spain market size' / 'anti-aging skincare'"],
+   ["Euromonitor","Market data by category","https://www.euromonitor.com","paid","Category: Skin Care in Spain → Naturals"],
+   ["Mintel","Consumer & trend research","https://www.mintel.com","paid","Search 'facial skincare / anti-aging Spain'"],
+   ["IBISWorld","Sector financials","https://www.ibisworld.com","paid","Search 'cosmetics & perfumery manufacturing Spain'"]]],
  ["Institutional — international (free)",[
-   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free"],
-   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free"],
-   ["World Bank","Global development indicators","https://data.worldbank.org","free"],
-   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free"],
-   ["UN Data","Global statistics hub","https://data.un.org","free"],
-   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free"],
-   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com","free"],
-   ["National stats offices","Your country's INE — ONS (UK), Census (US), Destatis (DE)…","https://unstats.un.org/home/nso_sites/","free"]]],
+   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free","Dataset: household consumption (COICOP) → personal care; or PRODCOM cosmetics"],
+   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free","Search 'household expenditure' and 'consumer prices'"],
+   ["World Bank","Global development indicators","https://data.worldbank.org","free","Indicators: household final consumption; population ages 25-54"],
+   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free","Country: your market → GDP, inflation, income"],
+   ["UN Data","Global statistics hub","https://data.un.org","free","Search 'population by age' and 'household consumption expenditure'"],
+   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free","Search 'ageing population' for your country"],
+   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com","free","Search 'cosmetics consumption <your country>'"],
+   ["National stats offices","Your country's INE — ONS (UK), Census (US), Destatis (DE)…","https://unstats.un.org/home/nso_sites/","free","Find your office → household spending on personal care; population by age"]]],
  ["Institutional — Spain (free)",[
-   ["INE (España)","Demography, prices, society","https://www.ine.es","free"],
-   ["Banco de España","Macro & financial series","https://www.bde.es","free"],
-   ["ICEX","Foreign markets","https://www.icex.es","free"],
-   ["datos.gob.es","Open public data","https://datos.gob.es","free"],
-   ["CNMV","Listed-company filings","https://www.cnmv.es","free"],
-   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free"]]],
+   ["INE (España)","Demography, prices, society","https://www.ine.es","free","Search 'encuesta de presupuestos familiares' → cuidado personal; población por edad"],
+   ["Banco de España","Macro & financial series","https://www.bde.es","free","Search 'renta disponible de los hogares'"],
+   ["ICEX","Foreign markets","https://www.icex.es","free","Search 'cosmética' → sector notes & exports"],
+   ["datos.gob.es","Open public data","https://datos.gob.es","free","Search 'cosmética' / 'consumo'"],
+   ["CNMV","Listed-company filings","https://www.cnmv.es","free","Search 'Puig' → hechos relevantes & cuentas"],
+   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free","Search 'hábitos de consumo' / 'belleza'"]]],
  ["Digital behaviour & trends",[
-   ["Google Trends","Search interest","https://trends.google.es","free"],
-   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free"],
-   ["AnswerThePublic","Real questions","https://answerthepublic.com","freemium"],
-   ["Exploding Topics","Emerging trends","https://explodingtopics.com","freemium"],
-   ["SimilarWeb","Web-traffic analytics","https://www.similarweb.com","freemium"],
-   ["SEMrush","SEO & keywords","https://www.semrush.com","freemium"],
-   ["Talkwalker","Social listening","https://www.talkwalker.com","paid"]]],
+   ["Google Trends","Search interest","https://trends.google.es","free","Compare: cosmética natural vs cosmética antiedad vs retinol · Spain · 5y · read Rising queries"],
+   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free","Seeds: 'sérum antiedad natural', 'crema facial vegana' → monthly volume"],
+   ["AnswerThePublic","Real questions","https://answerthepublic.com","freemium","Seed: 'crema antiedad' / 'antiarrugas natural' → the questions people ask"],
+   ["Exploding Topics","Emerging trends","https://explodingtopics.com","freemium","Search: clean beauty · skinimalism · bakuchiol"],
+   ["SimilarWeb","Web-traffic analytics","https://www.similarweb.com","freemium","Compare freshlycosmetics.com vs 2 rival domains → traffic, sources, geography"],
+   ["SEMrush","SEO & keywords","https://www.semrush.com","freemium","Domain: freshlycosmetics.com → top keywords & organic competitors"],
+   ["Talkwalker","Social listening","https://www.talkwalker.com","paid","Query: 'cosmética natural antiedad' → mentions & sentiment"]]],
  ["AI assistants",[
-   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium"],
-   ["Claude","Long-document analysis","https://claude.ai","freemium"],
-   ["Perplexity","Search with citations","https://www.perplexity.ai","freemium"],
-   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free"],
-   ["Elicit","Literature review","https://elicit.com","freemium"],
-   ["Consensus","Evidence-based answers","https://consensus.app","freemium"]]]
+   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium","Paste a preset above + ATTACH the data you pulled"],
+   ["Claude","Long-document analysis","https://claude.ai","freemium","Best for long PDFs; paste the 360° synthesis preset + attach reports"],
+   ["Perplexity","Search with citations","https://www.perplexity.ai","freemium","Ask 'natural anti-aging cosmetics market Spain 2024, with sources'"],
+   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free","Upload your PDFs → ask for the source × question matrix"],
+   ["Elicit","Literature review","https://elicit.com","freemium","Search 'consumer acceptance of natural anti-aging ingredients'"],
+   ["Consensus","Evidence-based answers","https://consensus.app","freemium","Ask 'does retinol alternative bakuchiol work?'"]]]
 ];
 const ACCESS={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
 
@@ -269,10 +272,11 @@ PRESETS.forEach(p=>{
 const toolsEl=document.getElementById('tools');
 TOOLS.forEach(([g,items])=>{
   const h=document.createElement('div');h.className='group';h.textContent=g;toolsEl.appendChild(h);
-  items.forEach(([n,d,u,ac])=>{
+  items.forEach(([n,d,u,ac,tryit])=>{
     const a=document.createElement('a');a.className='tool';a.href=u;a.target='_blank';a.rel='noopener';
     const [lab,tok]=ACCESS[ac];
     a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div><div class="td">${d}</div>`+
+      (tryit?`<div class="try"><b>Try:</b> ${tryit}</div>`:``)+
       `<span class="badge" style="--b:var(${tok})">${lab}</span>`;
     toolsEl.appendChild(a);
   });
