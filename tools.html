@@ -34,7 +34,10 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:900;font-size:clamp(28px,5vw,4
 .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:11px;height:11px;border-radius:50%}
 h2.grp{font-family:Fraunces,serif;font-weight:900;font-size:22px;margin:34px 0 4px;display:flex;align-items:center;gap:11px}
 h2.grp .dot{width:14px;height:14px;border-radius:4px;background:var(--g)}
-.gsub{color:var(--soft);font-size:13px;margin:0 0 14px}
+.gsub{color:var(--soft);font-size:13px;margin:0 0 8px}
+.topics{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 14px}
+.topics .tl{font:700 10px Archivo;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-right:2px}
+.topic{font-size:12px;color:var(--g);background:color-mix(in srgb,var(--g) 12%,transparent);border:1px solid color-mix(in srgb,var(--g) 32%,transparent);border-radius:999px;padding:3px 11px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
 .tn{display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -76,6 +79,14 @@ footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 0 44px;colo
 
 <script>
 const AC={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
+const TOPICS={
+ "Market size & the sector":["How big is the market?","Growth rate (CAGR)?","Natural / segment share?","Who leads & their revenue?"],
+ "Trends & search behaviour":["What's rising vs falling?","What do people search & ask?","Seasonality & geography?","Emerging ingredients / concepts?"],
+ "Competition":["Who leads online?","What rivals sell & at what price?","Where their traffic comes from?","Positioning gaps?"],
+ "Customer voice":["Top pains & complaints?","What they value (gains)?","The words they use?","Sentiment / mood?"],
+ "Official statistics — international":["Population by age (target size)?","Spend on personal care?","Economic backdrop?","Cross-country comparison?"],
+ "Official statistics — your country":["Population by age (target size)?","Household spend on care?","Disposable income?","Regulation & sector data?"],
+ "AI assistants — to analyse, not to research":["Summarise many reports","Cross-analyse for gaps & contradictions","Build a competitor table","Draft the survey's questions"]};
 // group: [title, colour, subtitle, items[]]; item: [name,url,gives,do,access,copyTerm]
 const LIB=[
 ["Market size & the sector","#3b6fb5","How big is the market, how fast it grows, who the players are.",[
@@ -136,6 +147,10 @@ LIB.forEach(([title,colour,sub,items])=>{
   const h=document.createElement('h2');h.className='grp';h.style.setProperty('--g',colour);
   h.innerHTML=`<span class="dot"></span>${title}`;lib.appendChild(h);
   const gs=document.createElement('p');gs.className='gsub';gs.textContent=sub;lib.appendChild(gs);
+  const tp=TOPICS[title];
+  if(tp){const td=document.createElement('div');td.className='topics';td.style.setProperty('--g',colour);
+    td.innerHTML='<span class="tl">Use it to answer</span>'+tp.map(t=>`<span class="topic">${t}</span>`).join('');
+    lib.appendChild(td);}
   const g=document.createElement('div');g.className='grid';
   items.forEach(([name,url,gives,dothis,ac,q])=>{
     const [lab,tok]=AC[ac];
