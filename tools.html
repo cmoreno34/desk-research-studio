@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The public-data toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ground:#f4f2ea;--panel:#fbfaf5;--ink:#17251d;--soft:#4a5a50;--leaf:#2f6b4f;--leaf-ink:#21503b;
+  --clay:#bd5f3f;--line:#ddd8c9;--sage:#e7ece3;--chip:#eef1e8;--shadow:0 1px 2px rgba(23,37,29,.06),0 8px 24px rgba(23,37,29,.06);
+  --a-free:#2c7a4b;--a-freemium:#b0730f;--a-paid:#6d6a86;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#111713;--panel:#18211b;--ink:#eef1ea;--soft:#a7b7ac;--leaf:#6bbd93;--leaf-ink:#8fd3ac;
+  --clay:#e08a68;--line:#2a352d;--sage:#1e2922;--chip:#212c25;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+  --a-free:#6bbd93;--a-freemium:#e0a44f;--a-paid:#b0a6d6;}}
+:root[data-theme="dark"]{
+  --ground:#111713;--panel:#18211b;--ink:#eef1ea;--soft:#a7b7ac;--leaf:#6bbd93;--leaf-ink:#8fd3ac;
+  --clay:#e08a68;--line:#2a352d;--sage:#1e2922;--chip:#212c25;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+  --a-free:#6bbd93;--a-freemium:#e0a44f;--a-paid:#b0a6d6;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Archivo,system-ui,sans-serif;line-height:1.5;padding-inline:clamp(16px,4vw,44px)}
+.wrap{max-width:1080px;margin:0 auto}
+header{padding-block:30px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.brandline{font:600 12px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin:0 0 8px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.03;margin:0;text-wrap:balance}
+.lede{color:var(--soft);font-size:15px;margin:10px 0 0;max-width:64ch}
+.top{display:flex;gap:10px;align-items:center}
+.back{background:var(--leaf);color:#fff;text-decoration:none;border-radius:999px;padding:8px 16px;font:700 13px Archivo}
+.themebtn{background:var(--panel);border:1px solid var(--line);color:var(--soft);border-radius:999px;padding:7px 13px;font:500 13px Archivo;cursor:pointer}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0 0;font-size:12.5px;color:var(--soft)}
+.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:11px;height:11px;border-radius:50%}
+h2.grp{font-family:Fraunces,serif;font-weight:900;font-size:22px;margin:34px 0 4px;display:flex;align-items:center;gap:11px}
+h2.grp .dot{width:14px;height:14px;border-radius:4px;background:var(--g)}
+.gsub{color:var(--soft);font-size:13px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.tool{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+.tn{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tn a{font-weight:700;font-size:15px;color:var(--ink);text-decoration:none}
+.tn a:hover{color:var(--leaf-ink)}
+.tn .ar{color:var(--leaf);font-weight:700}
+.gives{color:var(--soft);font-size:12.5px;margin:3px 0 8px}
+.do{background:var(--chip);border-left:3px solid var(--g,var(--leaf));border-radius:0 7px 7px 0;padding:8px 10px;font-size:12.5px;line-height:1.45}
+.do b{color:var(--leaf-ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:9px;gap:8px}
+.badge{font:600 10px Archivo;letter-spacing:.03em;padding:2px 9px;border-radius:999px;color:var(--b);background:color-mix(in srgb,var(--b) 15%,transparent);border:1px solid color-mix(in srgb,var(--b) 42%,transparent)}
+.cpy{border:1px solid var(--leaf);background:transparent;color:var(--leaf-ink);border-radius:6px;padding:2px 10px;font:600 11px Archivo;cursor:pointer}
+.cpy:hover{background:var(--leaf);color:#fff}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 0 44px;color:var(--soft);font-size:13px}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <p class="brandline">Estudios de Mercado I · Tema 2 · Desk research</p>
+    <h1>The public-data toolkit</h1>
+    <p class="lede">Every public-data tool, grouped by what you want to find out. Click the name to open it, read <b>Do this</b>, and hit <b>copy</b> for the exact search term. Searches are in English — swap for your own market.</p>
+  </div>
+  <div class="top">
+    <a class="back" href="./">← Guided worksheet</a>
+    <button class="themebtn" id="theme">◐</button>
+  </div>
+</header>
+<div class="legend">
+  <span><i style="background:var(--a-free)"></i>Free — open access</span>
+  <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
+  <span><i style="background:var(--a-paid)"></i>Subscription — the university may license it</span>
+</div>
+<div id="lib"></div>
+<footer>Verify before you cite: prefer a report or an official source over a blog; record the date and definition next to every number; never accept an AI figure that did not come from a document you supplied.</footer>
+</div>
+
+<script>
+const AC={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
+// group: [title, colour, subtitle, items[]]; item: [name,url,gives,do,access,copyTerm]
+const LIB=[
+["Market size & the sector","#3b6fb5","How big is the market, how fast it grows, who the players are.",[
+  ["Cosmetics Europe","https://cosmeticseurope.eu","Free EU cosmetics market size & growth","Click 'Market data', open the latest report and note the value and % growth.","free","natural organic cosmetics market data"],
+  ["STANPA","https://www.stanpa.com","Spain's cosmetics association — annual report","Open the annual report (memoria) and note market size and growth.","free","cosmetics market report"],
+  ["Statista","https://www.statista.com/search/?q=natural%20cosmetics%20market","Ready market-size charts & stats","Search, open a chart, and note the size and the growth rate (CAGR).","paid","natural cosmetics market size"],
+  ["Euromonitor","https://www.euromonitor.com","Market size & shares by category and country","Go to Skin Care → Naturals for your country; note value and share.","paid","skin care naturals"],
+  ["Mintel","https://www.mintel.com","Consumer behaviour & trend reports","Search facial skincare / anti-aging and note the top trends.","paid","facial skincare anti-aging"],
+  ["IBISWorld","https://www.ibisworld.com","Industry size, growth & company financials","Open the cosmetics report; note size, growth and number of firms.","paid","cosmetics manufacturing"],
+  ["Company annual reports","https://www.google.com/search?q=cosmetics+company+annual+report+skincare+segment","A rival's real revenue, segments & strategy","Open a rival's annual report and find its skincare/beauty segment.","free","cosmetics annual report skincare segment"]]],
+["Trends & search behaviour","#2f8f8f","What people want right now — from what they search.",[
+  ["Google Trends","https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics%2Canti-ageing%2Cretinol","How interest rises/falls over time & by region","Opens comparing 3 terms — set your country, see which rises, then Related queries → Rising.","free","natural cosmetics, anti-ageing, retinol"],
+  ["Keyword Planner","https://ads.google.com/home/tools/keyword-planner/","Monthly search volume (needs a free Google Ads account)","Open Google Ads → Tools → Keyword Planner → 'Discover new keywords'. No account? Use Google Trends.","free","natural anti-aging serum, vegan face cream"],
+  ["AnswerThePublic","https://answerthepublic.com","The real questions people ask","Type a term and press search; it draws a wheel of questions — copy the useful ones.","freemium","anti-aging cream"],
+  ["Exploding Topics","https://explodingtopics.com","Trends taking off before they go mainstream","Search a trend and read its growth curve and whether it's still rising.","freemium","clean beauty"]]],
+["Competition","#c9702f","What rivals sell, at what price, and how strong they are online.",[
+  ["SimilarWeb","https://www.similarweb.com/website/freshlycosmetics.com/","How much web traffic a brand gets & from where","It opens the brand's page — note visits, top countries and sources; compare 2 rivals.","freemium","freshlycosmetics.com"],
+  ["SEMrush","https://www.semrush.com","What a brand ranks for online & its rivals","Enter the brand's domain and read its top keywords and organic competitors.","freemium","freshlycosmetics.com"],
+  ["CNMV","https://www.cnmv.es","Listed-company filings (Spain)","Search the listed rival (e.g. Puig) and open its filings/results.","free","Puig"],
+  ["Trade press","https://www.google.com/search?q=natural+cosmetics+market+2024+report","Free news & summaries of paid reports","Open 2-3 recent articles and note any figure with its source.","free","natural cosmetics market 2024 report"]]],
+["Customer voice","#7a6bd0","What customers actually say — pains, gains, their own words.",[
+  ["Amazon reviews","https://www.amazon.es/s?k=anti-aging+serum","Unprompted customer language at scale","Read reviews of rival products; note the recurring pains and gains.","free","anti-aging serum"],
+  ["Reddit","https://www.reddit.com/search/?q=natural%20anti-aging%20skincare","Honest opinions & questions","Search the topic; read threads for pains, doubts and the words people use.","free","natural anti-aging skincare"],
+  ["Talkwalker","https://www.talkwalker.com","What people say online & the overall mood","Search your topic; read the volume of mentions and the positive/negative split.","paid","natural anti-aging cosmetics"],
+  ["CIS","https://www.cis.es","Opinion & attitudes (Spain barómetros)","Search 'consumer habits' and read the relevant barómetro.","free","consumer habits"]]],
+["Official statistics — international","#2c7a4b","Comparable, free, cross-country data.",[
+  ["Eurostat","https://ec.europa.eu/eurostat","Comparable EU statistics","Open household consumption (COICOP) → personal care.","free","household consumption personal care"],
+  ["OECD Data","https://data.oecd.org","Cross-country economic & social data","Search household expenditure and note the figure for your country.","free","household expenditure"],
+  ["World Bank","https://data.worldbank.org","Global development indicators","Open household final consumption; population 25-54.","free","household final consumption expenditure"],
+  ["IMF Data","https://www.imf.org/en/Data","Macro & financial, by country","Pick your country → GDP, inflation, income.","free","GDP inflation"],
+  ["UN Data","https://data.un.org","Global statistics hub","Search population by age & household consumption.","free","population by age"],
+  ["Our World in Data","https://ourworldindata.org","Curated global datasets & charts","Open the ageing-population chart for your country.","free","ageing population"],
+  ["Google Dataset Search","https://datasetsearch.research.google.com/search?query=cosmetics%20consumption","Find open datasets anywhere","Type your topic; open a dataset and check its source and date.","free","cosmetics consumption"]]],
+["Official statistics — your country","#2c7a4b","Your national INE. Pick yours.",[
+  ["INE (España)","https://www.ine.es/en/","Demography, prices, society","Open the Household Budget Survey (personal care) and population by age.","free","household budget survey"],
+  ["Banco de España","https://www.bde.es/bde/en/","Macro & financial series","Search household disposable income; note the latest figure.","free","household disposable income"],
+  ["ICEX","https://www.icex.es","Foreign markets & sector notes","Open the cosmetics sector page; note market/export data.","free","cosmetics sector"],
+  ["datos.gob.es","https://datos.gob.es","Open public data (Spain)","Search 'cosmetics' or 'consumption'; open an official dataset.","free","cosmetics"],
+  ["Destatis (Germany)","https://www.destatis.de/EN","Germany's statistics office","Search 'private consumption' and 'population by age'.","free","private consumption; population by age"],
+  ["SCB (Sweden)","https://www.scb.se/en","Statistics Sweden","Search 'household expenditure' and 'population by age'.","free","household expenditure; population by age"],
+  ["Statistics Denmark","https://www.dst.dk/en","Danmarks Statistik — StatBank","Open StatBank; find consumption and population by age.","free","consumption; population by age"],
+  ["INEGI (Mexico)","https://www.inegi.org.mx","Mexico's statistics institute","Open ENIGH (household spending) and population by age.","free","gasto de los hogares ENIGH"],
+  ["ONS (UK)","https://www.ons.gov.uk","Office for National Statistics","Search 'household spending' and 'population by age'.","free","household spending; population by age"],
+  ["Every national office","https://unstats.un.org/home/nso_sites/","Directory of all statistics offices","Find your country's office → household spend on personal care.","free","household spending personal care"]]],
+["AI assistants — to analyse, not to research","#3f8f63","Paste your prompt here WITH your data. Never accept a figure it did not read.",[
+  ["ChatGPT","https://chatgpt.com","Summarise & compare","Paste your prompt AND attach the data you gathered; ask for a table + insights.","freemium",""],
+  ["Claude","https://claude.ai","Long-document analysis","Best for long PDFs — paste the prompt and attach your reports.","freemium",""],
+  ["Perplexity","https://www.perplexity.ai/search?q=natural%20anti-aging%20cosmetics%20market%20size%2C%20with%20sources","Search with citations","It opens a cited search — refine it and check the sources it cites.","freemium","natural anti-aging cosmetics market size, with sources"],
+  ["NotebookLM","https://notebooklm.google.com","Grounded on your own sources","Upload your PDFs, then ask it to build a source × question table.","free",""],
+  ["Elicit","https://elicit.com","Academic literature review","Type your research question; it finds and summarises studies.","freemium","consumer acceptance of natural anti-aging ingredients"],
+  ["Consensus","https://consensus.app","Evidence-based answers","Ask a yes/no research question; it answers with the weight of evidence.","freemium","does bakuchiol work as a retinol alternative"]]]
+];
+function copyText(text,btn){const o=btn.textContent;const ok=()=>{btn.textContent='copied ✓';setTimeout(()=>btn.textContent=o,1200);};
+  const fb=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(_){btn.textContent='Ctrl+C';}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fb);}else{fb();}}
+const lib=document.getElementById('lib');
+LIB.forEach(([title,colour,sub,items])=>{
+  const h=document.createElement('h2');h.className='grp';h.style.setProperty('--g',colour);
+  h.innerHTML=`<span class="dot"></span>${title}`;lib.appendChild(h);
+  const gs=document.createElement('p');gs.className='gsub';gs.textContent=sub;lib.appendChild(gs);
+  const g=document.createElement('div');g.className='grid';
+  items.forEach(([name,url,gives,dothis,ac,q])=>{
+    const [lab,tok]=AC[ac];
+    const c=document.createElement('div');c.className='tool';c.style.setProperty('--g',colour);
+    c.innerHTML=`<div class="tn"><a href="${url}" target="_blank" rel="noopener">${name}</a><span class="ar">↗</span></div>`+
+      `<div class="gives">${gives}</div>`+
+      `<div class="do"><b>Do this:</b> ${dothis}</div>`+
+      `<div class="foot"><span class="badge" style="--b:var(${tok})">${lab}</span></div>`;
+    if(q){const b=document.createElement('button');b.className='cpy';b.textContent='copy';b.title='Copy: '+q;
+      b.onclick=()=>copyText(q,b);c.querySelector('.foot').appendChild(b);}
+    g.appendChild(c);
+  });
+  lib.appendChild(g);
+});
+const root=document.documentElement;document.getElementById('theme').onclick=()=>{const c=root.getAttribute('data-theme');root.setAttribute('data-theme',c==='dark'?'light':c==='light'?'dark':(matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));};
+</script>
+
+</body>
+</html>
