@@ -395,6 +395,11 @@ PRESETS.forEach(p=>{
   presetsEl.appendChild(b);
 });
 
+function copyText(text,btn){
+  const done=()=>{if(btn){const o=btn.textContent;btn.textContent='copied ✓';setTimeout(()=>btn.textContent=(o.indexOf('prompt')>-1?'Copy prompt':'copy'),1200);}};
+  const fallback=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}catch(e){if(btn)btn.textContent='press Ctrl+C';}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback);}else{fallback();}
+}
 const toolsEl=document.getElementById('tools');
 TOOLS.forEach(([g,items])=>{
   const h=document.createElement('div');h.className='group';h.textContent=g;toolsEl.appendChild(h);
@@ -408,8 +413,7 @@ TOOLS.forEach(([g,items])=>{
       if(q){
         const cb=document.createElement('button');cb.type='button';cb.className='cpy';cb.textContent='copy';
         cb.title='Copy: '+q;
-        cb.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();
-          navigator.clipboard.writeText(q).then(()=>{cb.textContent='copied ✓';setTimeout(()=>cb.textContent='copy',1200);}).catch(()=>{cb.textContent='!';});});
+        cb.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();copyText(q,cb);});
         tr.appendChild(cb);
       }
       a.appendChild(tr);
@@ -431,10 +435,11 @@ function render(){
 function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function plain(){return[["ROLE","role"],["TASK","task"],["CONTEXT","context"],["SOURCES","sources"],["FORMAT","format"],["CRITERIA","criteria"]].map(([lab,k])=>`${lab}: ${state[k]||''}`).join("\n\n");}
 
-document.getElementById('copy').onclick=async(e)=>{
-  try{await navigator.clipboard.writeText(plain());}catch(_){}
-  const b=e.currentTarget;b.textContent="Copied ✓";b.classList.add('ok');
-  setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove('ok');},1400);
+document.getElementById('copy').onclick=(e)=>{
+  const b=e.currentTarget;const txt=plain();
+  const ok=()=>{b.textContent="Copied ✓";b.classList.add('ok');setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove('ok');},1400);};
+  const fb=()=>{try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(_){b.textContent="press Ctrl+C";}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(fb);}else{fb();}
 };
 
 const root=document.documentElement, tb=document.getElementById('theme');
