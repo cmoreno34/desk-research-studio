@@ -112,6 +112,23 @@ pre.prompt .lab{color:var(--mono-dim)}
 footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 44px;color:var(--soft);font-size:13px}
 footer b{color:var(--clay)}
 
+/* ---- how to use ---- */
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 4px}
+@media(max-width:820px){.how{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.how{grid-template-columns:1fr}}
+.howstep{display:flex;gap:11px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 13px;box-shadow:var(--shadow)}
+.howstep .hn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--leaf);color:#fff;font:900 15px Fraunces,serif;display:flex;align-items:center;justify-content:center}
+.howstep b{display:block;font-size:14px;margin-bottom:2px}
+.howstep b i{font-weight:400;font-style:italic;color:var(--soft)}
+.howstep span{font-size:12px;color:var(--soft);line-height:1.4}
+.steplabel{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:38px 0 14px;
+  font-family:Fraunces,serif;font-weight:900;font-size:20px;color:var(--ink)}
+.steplabel .sn{flex:none;width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--ground);
+  font-size:16px;display:inline-flex;align-items:center;justify-content:center}
+.steplabel .snote{font-family:Archivo,sans-serif;font-weight:500;font-size:12.5px;color:var(--clay)}
+.cpy{margin-left:6px;border:1px solid var(--leaf);background:transparent;color:var(--leaf-ink);
+  border-radius:6px;padding:1px 8px;font:600 10.5px Archivo;cursor:pointer;vertical-align:middle}
+.cpy:hover{background:var(--leaf);color:#fff}
 /* ---- worksheet ---- */
 .ws{margin:44px 0 10px;border-top:2px solid var(--leaf);padding-top:26px}
 .ws h2.wt{font-family:Fraunces,serif;font-weight:900;font-size:26px;margin:0 0 4px}
@@ -160,20 +177,37 @@ table.log input:focus{outline:2px solid var(--leaf);outline-offset:-2px}
 <header>
   <div>
     <p class="brandline">Estudios de Mercado I · Tema 2 · Desk research</p>
-    <h1>Desk Research Prompt Studio</h1>
-    <p class="lede">Build a rigorous analysis prompt in six parts, load a preset per data source, and grab the tool link. AI reads and cross-analyses — the judgement stays yours.</p>
+    <h1>Desk Research Workbench</h1>
+    <p class="lede">Gather public data with the tools, get an AI to help you make sense of it, write your answers, and save a PDF to hand in. Works for any country — just swap the search terms.</p>
   </div>
   <button class="themebtn" id="theme">◐ Theme</button>
 </header>
 
-<div class="case">
-  <span class="dot"></span>
-  <span><b>Working case:</b> FreshlyCosmetics — launching a natural, clean-beauty facial <b>anti-aging</b> line in Spain. Every field below is pre-filled for it; edit freely.</span>
+<div class="how">
+  <div class="howstep"><span class="hn">1</span><div><b>Gather your data</b><span>Open the tools and search what each “Try” shows — hit <b>copy</b> for the exact term. Free sources are enough.</span></div></div>
+  <div class="howstep"><span class="hn">2</span><div><b>Ask AI to help <i>(optional)</i></b><span>Pick a preset → copy the prompt → paste it into <b>ChatGPT / Claude</b> with your data. Not into a data tool.</span></div></div>
+  <div class="howstep"><span class="hn">3</span><div><b>Write your answers</b><span>Fill the worksheet: source log, findings, and the gaps that become your survey questions.</span></div></div>
+  <div class="howstep"><span class="hn">4</span><div><b>Save as PDF</b><span>Turn your worksheet into a PDF to hand in.</span></div></div>
 </div>
 
-<p class="eyebrow">Load a preset for a source</p>
-<div class="presets" id="presets"></div>
+<div class="case">
+  <span class="dot"></span>
+  <span><b>Working case:</b> FreshlyCosmetics — a natural, clean-beauty facial <b>anti-aging</b> launch in Spain. <b>Researching another country?</b> Swap the search terms and use your own national statistics office.</span>
+</div>
 
+<p class="steplabel"><span class="sn">1</span> Gather your data — the public-data toolkit</p>
+<div class="tools">
+  <p style="margin:0 0 10px;font-size:13.5px;color:var(--soft);max-width:74ch">You can do the whole activity with the <b style="color:var(--a-free)">free</b> sources. Each card shows <b>what to search (“Try”)</b> and a <b>copy</b> button for the exact term. Subscription tools only add depth. International student? Use the international / national blocks and your own country's stats office.</p>
+  <div class="legend">
+    <span><i style="background:var(--a-free)"></i>Free — open access</span>
+    <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
+    <span><i style="background:var(--a-paid)"></i>Subscription — the university may license it</span>
+  </div>
+  <div class="toolgrid" id="tools"></div>
+</div>
+
+<p class="steplabel"><span class="sn">2</span> Ask AI to help — build your analysis prompt <span class="snote">→ paste the result into ChatGPT / Claude, together with your data</span></p>
+<div class="presets" id="presets"></div>
 <div class="grid">
   <div class="builder" id="builder"></div>
   <div class="out">
@@ -186,17 +220,7 @@ table.log input:focus{outline:2px solid var(--leaf);outline-offset:-2px}
   </div>
 </div>
 
-<div class="tools">
-  <p class="eyebrow" style="margin-bottom:6px">The public-data toolkit</p>
-  <p style="margin:0 0 10px;font-size:13.5px;color:var(--soft);max-width:70ch">You can complete the whole activity with the <b style="color:var(--a-free)">free</b> sources — start with the sector associations and the institutional data. Subscription tools add depth if the university licenses them. International student? Use the international institutional block and your own country's stats office; only Eurostat and the global bodies are cross-country.</p>
-  <div class="legend">
-    <span><i style="background:var(--a-free)"></i>Free — open access</span>
-    <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
-    <span><i style="background:var(--a-paid)"></i>Subscription — the university may license it</span>
-  </div>
-  <div class="toolgrid" id="tools"></div>
-</div>
-
+<p class="steplabel"><span class="sn">3</span> Write your answers &amp; save your PDF <span class="snote">→ this is what you hand in</span></p>
 <section class="ws" id="worksheet">
   <div class="printhead">
     <div style="font:700 12px Archivo;letter-spacing:.1em;text-transform:uppercase;color:#2f6b4f">Estudios de Mercado I · Tema 2 · Secondary research &amp; desk research</div>
@@ -293,55 +317,56 @@ const PRESETS=[
    format:"(1) executive summary, (2) competitor comparison table, (3) the 5 biggest opportunities ranked by impact × feasibility, (4) the list of what is still UNKNOWN, written as the questions a primary survey should ask.",
    criteria:"Every figure must trace to an attachment; name what is missing rather than filling it."}}
 ];
-// [name, description, url, access, TRY — what to actually search/enter for this case]
+// [name, description, url, access, TRY (what to do — English), Q (exact term to copy/paste)]
+// Searches are in English so they work for international students; swap terms for your own market.
 const TOOLS=[
  ["Sector & associations — FREE (do the activity with these)",[
-   ["Cosmetics Europe","EU cosmetics market data & reports","https://cosmeticseurope.eu","free","Open 'Market data' → EU cosmetics value & growth; natural/organic split"],
-   ["STANPA","Spanish cosmetics & perfumery association","https://www.stanpa.com","free","Search 'mercado cosmética natural España' + the annual report (memoria)"],
-   ["Company annual reports","Segment revenue & strategy, from investor pages","https://www.google.com/search?q=Puig+annual+report+skincare","free","Search 'Puig annual report' / 'L'Oréal registration document' → skincare segment"],
-   ["Trade press","Sector news & free summaries","https://www.google.com/search?q=mercado+cosm%C3%A9tica+natural+Espa%C3%B1a+2024+informe","free","Search 'mercado cosmética natural España 2024 informe'"]]],
+   ["Cosmetics Europe","EU cosmetics market data & reports","https://cosmeticseurope.eu","free","Open 'Market data' → cosmetics value & growth; natural/organic split","natural organic cosmetics market data"],
+   ["STANPA","Spanish cosmetics association (annual report)","https://www.stanpa.com","free","Open the annual report (memoria) → market size & growth","cosmetics market report"],
+   ["Company annual reports","Segment revenue & strategy, from investor pages","https://www.google.com/search?q=cosmetics+company+annual+report+skincare+segment","free","Search a rival's annual report → skincare / beauty segment","cosmetics annual report skincare segment"],
+   ["Trade press","Sector news & free report summaries","https://www.google.com/search?q=natural+cosmetics+market+2024+report","free","Search recent sector reports & news","natural cosmetics market 2024 report"]]],
  ["Market reports & databases — subscription (optional depth)",[
-   ["Statista","Sizing & benchmarking","https://www.statista.com","paid","Search 'natural cosmetics Spain market size' / 'anti-aging skincare'"],
-   ["Euromonitor","Market data by category","https://www.euromonitor.com","paid","Category: Skin Care in Spain → Naturals"],
-   ["Mintel","Consumer & trend research","https://www.mintel.com","paid","Search 'facial skincare / anti-aging Spain'"],
-   ["IBISWorld","Sector financials","https://www.ibisworld.com","paid","Search 'cosmetics & perfumery manufacturing Spain'"]]],
+   ["Statista","Sizing & benchmarking","https://www.statista.com/search/?q=natural%20cosmetics%20market","paid","Search the market size & the anti-aging segment","natural cosmetics market size"],
+   ["Euromonitor","Market data by category","https://www.euromonitor.com","paid","Category: Skin Care → Naturals, your country","skin care naturals"],
+   ["Mintel","Consumer & trend research","https://www.mintel.com","paid","Search facial skincare / anti-aging","facial skincare anti-aging"],
+   ["IBISWorld","Sector financials","https://www.ibisworld.com","paid","Search cosmetics manufacturing","cosmetics manufacturing"]]],
  ["Institutional — international (free)",[
-   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free","Dataset: household consumption (COICOP) → personal care; or PRODCOM cosmetics"],
-   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free","Search 'household expenditure' and 'consumer prices'"],
-   ["World Bank","Global development indicators","https://data.worldbank.org","free","Indicators: household final consumption; population ages 25-54"],
-   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free","Country: your market → GDP, inflation, income"],
-   ["UN Data","Global statistics hub","https://data.un.org","free","Search 'population by age' and 'household consumption expenditure'"],
-   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free","Search 'ageing population' for your country"],
-   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com","free","Search 'cosmetics consumption <your country>'"]]],
+   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free","Dataset: household consumption (COICOP) → personal care","household consumption personal care"],
+   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free","Search household expenditure & consumer prices","household expenditure"],
+   ["World Bank","Global development indicators","https://data.worldbank.org","free","Indicator: household final consumption; population 25-54","household final consumption expenditure"],
+   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free","Pick your country → GDP, inflation, income","GDP inflation"],
+   ["UN Data","Global statistics hub","https://data.un.org","free","Search population by age & household consumption","population by age"],
+   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free","Search ageing population for your country","ageing population"],
+   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com/search?query=cosmetics%20consumption","free","Search cosmetics consumption + your country","cosmetics consumption"]]],
  ["National statistics offices — pick YOUR country (free)",[
-   ["Destatis (Germany)","Federal statistics — the German INE","https://www.destatis.de/EN","free","Search 'private consumption'; 'population by age' (Bevölkerung)"],
-   ["SCB (Sweden)","Statistics Sweden","https://www.scb.se/en","free","Search 'household expenditure'; 'population by age'"],
-   ["Statistics Denmark","Danmarks Statistik — StatBank","https://www.dst.dk/en","free","StatBank → consumption; population by age"],
-   ["INEGI (Mexico)","Instituto Nacional de Estadística","https://www.inegi.org.mx","free","Buscar 'ENIGH gasto de los hogares'; población por edad"],
-   ["ONS (UK)","Office for National Statistics","https://www.ons.gov.uk","free","Search 'household spending'; 'population estimates by age'"],
-   ["More countries","Directory of every national office","https://unstats.un.org/home/nso_sites/","free","Find your office → household spending on personal care; population by age"]]],
+   ["Destatis (Germany)","Federal statistics — Germany's INE","https://www.destatis.de/EN","free","Search private consumption; population by age","private consumption; population by age"],
+   ["SCB (Sweden)","Statistics Sweden","https://www.scb.se/en","free","Search household expenditure; population by age","household expenditure; population by age"],
+   ["Statistics Denmark","Danmarks Statistik — StatBank","https://www.dst.dk/en","free","StatBank → consumption; population by age","consumption; population by age"],
+   ["INEGI (Mexico)","Mexico's statistics institute","https://www.inegi.org.mx","free","Search household spending (ENIGH); population by age","gasto de los hogares ENIGH"],
+   ["ONS (UK)","Office for National Statistics","https://www.ons.gov.uk","free","Search household spending; population by age","household spending; population by age"],
+   ["More countries","Directory of every national office","https://unstats.un.org/home/nso_sites/","free","Find your office → household spending on personal care","household spending personal care"]]],
  ["Institutional — Spain (free)",[
-   ["INE (España)","Demography, prices, society","https://www.ine.es","free","Search 'encuesta de presupuestos familiares' → cuidado personal; población por edad"],
-   ["Banco de España","Macro & financial series","https://www.bde.es","free","Search 'renta disponible de los hogares'"],
-   ["ICEX","Foreign markets","https://www.icex.es","free","Search 'cosmética' → sector notes & exports"],
-   ["datos.gob.es","Open public data","https://datos.gob.es","free","Search 'cosmética' / 'consumo'"],
-   ["CNMV","Listed-company filings","https://www.cnmv.es","free","Search 'Puig' → hechos relevantes & cuentas"],
-   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free","Search 'hábitos de consumo' / 'belleza'"]]],
+   ["INE (España)","Demography, prices, society","https://www.ine.es/en/","free","Search household budget survey; population by age","household budget survey"],
+   ["Banco de España","Macro & financial series","https://www.bde.es/bde/en/","free","Search household disposable income","household disposable income"],
+   ["ICEX","Foreign markets & sector notes","https://www.icex.es","free","Search the cosmetics sector","cosmetics sector"],
+   ["datos.gob.es","Open public data","https://datos.gob.es","free","Search cosmetics / consumption","cosmetics"],
+   ["CNMV","Listed-company filings","https://www.cnmv.es","free","Search the listed rival (e.g. Puig) → filings","Puig"],
+   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free","Search consumer habits","consumer habits"]]],
  ["Digital behaviour & trends",[
-   ["Google Trends","Search interest","https://trends.google.es","free","Compare: cosmética natural vs cosmética antiedad vs retinol · Spain · 5y · read Rising queries"],
-   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free","Seeds: 'sérum antiedad natural', 'crema facial vegana' → monthly volume"],
-   ["AnswerThePublic","Real questions","https://answerthepublic.com","freemium","Seed: 'crema antiedad' / 'antiarrugas natural' → the questions people ask"],
-   ["Exploding Topics","Emerging trends","https://explodingtopics.com","freemium","Search: clean beauty · skinimalism · bakuchiol"],
-   ["SimilarWeb","Web-traffic analytics","https://www.similarweb.com","freemium","Compare freshlycosmetics.com vs 2 rival domains → traffic, sources, geography"],
-   ["SEMrush","SEO & keywords","https://www.semrush.com","freemium","Domain: freshlycosmetics.com → top keywords & organic competitors"],
-   ["Talkwalker","Social listening","https://www.talkwalker.com","paid","Query: 'cosmética natural antiedad' → mentions & sentiment"]]],
- ["AI assistants",[
-   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium","Paste a preset above + ATTACH the data you pulled"],
-   ["Claude","Long-document analysis","https://claude.ai","freemium","Best for long PDFs; paste the 360° synthesis preset + attach reports"],
-   ["Perplexity","Search with citations","https://www.perplexity.ai","freemium","Ask 'natural anti-aging cosmetics market Spain 2024, with sources'"],
-   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free","Upload your PDFs → ask for the source × question matrix"],
-   ["Elicit","Literature review","https://elicit.com","freemium","Search 'consumer acceptance of natural anti-aging ingredients'"],
-   ["Consensus","Evidence-based answers","https://consensus.app","freemium","Ask 'does retinol alternative bakuchiol work?'"]]]
+   ["Google Trends","Search interest — opens pre-loaded","https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics,anti-ageing,retinol","free","Opens comparing 3 terms · set your country · read Rising queries","natural cosmetics, anti-ageing, retinol"],
+   ["Keyword Planner","Search volume","https://ads.google.com/home/tools/keyword-planner/","free","Seeds → monthly search volume","natural anti-aging serum, vegan face cream"],
+   ["AnswerThePublic","Real questions people ask","https://answerthepublic.com","freemium","Seed a term → the questions people ask","anti-aging cream"],
+   ["Exploding Topics","Emerging trends","https://explodingtopics.com","freemium","Search emerging beauty trends","clean beauty"],
+   ["SimilarWeb","Web-traffic analytics — opens the site","https://www.similarweb.com/website/freshlycosmetics.com/","freemium","See traffic & sources; then compare 2 rival domains","freshlycosmetics.com"],
+   ["SEMrush","SEO & keywords","https://www.semrush.com","freemium","Enter the brand domain → keywords & competitors","freshlycosmetics.com"],
+   ["Talkwalker","Social listening","https://www.talkwalker.com","paid","Query the topic → mentions & sentiment","natural anti-aging cosmetics"]]],
+ ["AI assistants (paste your prompt here — not into a data tool)",[
+   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium","Paste a preset from Step 2 + ATTACH the data you pulled",""],
+   ["Claude","Long-document analysis","https://claude.ai","freemium","Best for long PDFs; paste the 360° preset + attach reports",""],
+   ["Perplexity","Search with citations","https://www.perplexity.ai/search?q=natural%20anti-aging%20cosmetics%20market%20size%2C%20with%20sources","freemium","Opens a cited search you can refine","natural anti-aging cosmetics market size, with sources"],
+   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free","Upload your PDFs → ask for the source × question matrix",""],
+   ["Elicit","Literature review","https://elicit.com","freemium","Search the research question","consumer acceptance of natural anti-aging ingredients"],
+   ["Consensus","Evidence-based answers","https://consensus.app","freemium","Ask an evidence question","does bakuchiol work as a retinol alternative"]]]
 ];
 const ACCESS={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
 
@@ -373,12 +398,24 @@ PRESETS.forEach(p=>{
 const toolsEl=document.getElementById('tools');
 TOOLS.forEach(([g,items])=>{
   const h=document.createElement('div');h.className='group';h.textContent=g;toolsEl.appendChild(h);
-  items.forEach(([n,d,u,ac,tryit])=>{
+  items.forEach(([n,d,u,ac,tryit,q])=>{
     const a=document.createElement('a');a.className='tool';a.href=u;a.target='_blank';a.rel='noopener';
     const [lab,tok]=ACCESS[ac];
-    a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div><div class="td">${d}</div>`+
-      (tryit?`<div class="try"><b>Try:</b> ${tryit}</div>`:``)+
-      `<span class="badge" style="--b:var(${tok})">${lab}</span>`;
+    a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div><div class="td">${d}</div>`;
+    if(tryit){
+      const tr=document.createElement('div');tr.className='try';
+      tr.innerHTML=`<b>Try:</b> ${tryit} `;
+      if(q){
+        const cb=document.createElement('button');cb.type='button';cb.className='cpy';cb.textContent='copy';
+        cb.title='Copy: '+q;
+        cb.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();
+          navigator.clipboard.writeText(q).then(()=>{cb.textContent='copied ✓';setTimeout(()=>cb.textContent='copy',1200);}).catch(()=>{cb.textContent='!';});});
+        tr.appendChild(cb);
+      }
+      a.appendChild(tr);
+    }
+    const bd=document.createElement('span');bd.className='badge';bd.style.cssText='--b:var('+tok+')';bd.textContent=lab;
+    a.appendChild(bd);
     toolsEl.appendChild(a);
   });
 });
