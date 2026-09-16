@@ -3,184 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Desk Research Prompt Studio</title>
+<title>Desk Research — guided worksheet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --ground:#f4f2ea; --panel:#fbfaf5; --ink:#17251d; --soft:#4a5a50;
-  --leaf:#2f6b4f; --leaf-ink:#21503b; --clay:#bd5f3f; --line:#ddd8c9;
-  --sage:#e7ece3; --chip:#eef1e8; --shadow:0 1px 2px rgba(23,37,29,.06),0 8px 24px rgba(23,37,29,.06);
-  --mono-bg:#14211b; --mono-ink:#e8efe6; --mono-dim:#8fb09c;
-  --a-free:#2c7a4b; --a-freemium:#b0730f; --a-paid:#6d6a86;
+  --ground:#f4f2ea;--panel:#fbfaf5;--ink:#17251d;--soft:#4a5a50;--leaf:#2f6b4f;--leaf-ink:#21503b;
+  --clay:#bd5f3f;--line:#ddd8c9;--sage:#e7ece3;--chip:#eef1e8;--shadow:0 1px 2px rgba(23,37,29,.06),0 8px 24px rgba(23,37,29,.06);
+  --blue:#3b6fb5;--green:#2f8f8f;
 }
-:root:not([data-theme="light"]) { }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#111713; --panel:#18211b; --ink:#eef1ea; --soft:#a7b7ac;
-    --leaf:#6bbd93; --leaf-ink:#8fd3ac; --clay:#e08a68; --line:#2a352d;
-    --sage:#1e2922; --chip:#212c25; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
-    --mono-bg:#0c130f; --mono-ink:#dfe9df; --mono-dim:#6d8b78;
-    --a-free:#6bbd93; --a-freemium:#e0a44f; --a-paid:#b0a6d6;
-  }
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#111713;--panel:#18211b;--ink:#eef1ea;--soft:#a7b7ac;--leaf:#6bbd93;--leaf-ink:#8fd3ac;
+  --clay:#e08a68;--line:#2a352d;--sage:#1e2922;--chip:#212c25;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+  --blue:#6ea8e6;--green:#63c6c6;}}
 :root[data-theme="dark"]{
-  --ground:#111713; --panel:#18211b; --ink:#eef1ea; --soft:#a7b7ac;
-  --leaf:#6bbd93; --leaf-ink:#8fd3ac; --clay:#e08a68; --line:#2a352d;
-  --sage:#1e2922; --chip:#212c25; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
-  --mono-bg:#0c130f; --mono-ink:#dfe9df; --mono-dim:#6d8b78;
-  --a-free:#6bbd93; --a-freemium:#e0a44f; --a-paid:#b0a6d6;
-}
+  --ground:#111713;--panel:#18211b;--ink:#eef1ea;--soft:#a7b7ac;--leaf:#6bbd93;--leaf-ink:#8fd3ac;
+  --clay:#e08a68;--line:#2a352d;--sage:#1e2922;--chip:#212c25;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35);
+  --blue:#6ea8e6;--green:#63c6c6;}
 *{box-sizing:border-box}
-body{margin:0;background:var(--ground);color:var(--ink);
-  font-family:Archivo,system-ui,sans-serif;line-height:1.5;
-  padding-inline:clamp(16px,4vw,48px);padding-block:0}
-.wrap{max-width:1120px;margin:0 auto}
-header{padding-block:34px 20px;border-bottom:1px solid var(--line);display:flex;
-  justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
-.brandline{font:600 12px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin:0 0 10px}
-h1{font-family:Fraunces,Georgia,serif;font-weight:900;font-size:clamp(30px,5vw,46px);
-  line-height:1.02;letter-spacing:-.01em;margin:0;text-wrap:balance;max-width:15ch}
-.lede{color:var(--soft);max-width:46ch;margin:12px 0 0;font-size:15px}
-.themebtn{background:var(--panel);border:1px solid var(--line);color:var(--soft);
-  border-radius:999px;padding:7px 14px;font:500 13px Archivo;cursor:pointer}
-.themebtn:hover{color:var(--ink);border-color:var(--soft)}
-
-.case{display:flex;align-items:center;gap:12px;background:var(--sage);
-  border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:22px 0 8px}
-.case .dot{width:10px;height:10px;border-radius:50%;background:var(--leaf);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--leaf) 22%,transparent)}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Archivo,system-ui,sans-serif;line-height:1.55;
+  padding-inline:clamp(16px,4vw,40px);padding-block:0}
+.wrap{max-width:760px;margin:0 auto}
+header{padding-block:30px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.brandline{font:600 12px/1 Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);margin:0 0 8px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:900;font-size:clamp(26px,5vw,36px);line-height:1.04;margin:0;text-wrap:balance}
+.themebtn{background:var(--panel);border:1px solid var(--line);color:var(--soft);border-radius:999px;padding:6px 13px;font:500 13px Archivo;cursor:pointer}
+.case{background:var(--sage);border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin:20px 0 6px;font-size:14.5px}
 .case b{font-weight:700}
-.case span{color:var(--soft);font-size:14px}
-
-.eyebrow{font:600 12px/1 Archivo;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);margin:30px 0 12px}
-.presets{display:flex;gap:8px;flex-wrap:wrap}
-.preset{border:1px solid var(--line);background:var(--panel);color:var(--ink);
-  border-radius:999px;padding:9px 15px;font:500 13.5px Archivo;cursor:pointer;transition:.12s;display:flex;gap:8px;align-items:center}
-.preset:hover{border-color:var(--leaf);color:var(--leaf-ink)}
-.preset[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:#fff}
-.preset[aria-pressed="true"] .k{color:rgba(255,255,255,.7)}
-.preset .k{font:500 11px 'IBM Plex Mono',monospace;color:var(--soft)}
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;align-items:start}
-@media(max-width:820px){.grid{grid-template-columns:1fr}}
-.builder{display:grid;gap:14px}
-.field{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow)}
-.field label{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
-.field .num{font-family:Fraunces,serif;font-weight:900;font-size:18px;color:var(--leaf);line-height:1}
-.field .nm{font:700 12px Archivo;letter-spacing:.12em;text-transform:uppercase}
-.field .hint{color:var(--soft);font-size:11.5px;margin-left:auto;font-weight:500}
-.field textarea{width:100%;border:0;background:transparent;resize:vertical;min-height:44px;
-  color:var(--ink);font:400 14px/1.5 Archivo;outline:none}
-.field:focus-within{border-color:var(--leaf)}
-
-.out{position:sticky;top:16px}
-.outhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.outhead h2{font-family:Fraunces,serif;font-weight:600;font-size:18px;margin:0}
-.copy{background:var(--clay);color:#fff;border:0;border-radius:9px;padding:9px 16px;
-  font:600 13px Archivo;cursor:pointer;transition:.12s}
-.copy:hover{filter:brightness(1.06)}
-.copy.ok{background:var(--leaf)}
-pre.prompt{background:var(--mono-bg);color:var(--mono-ink);border-radius:14px;padding:20px;
-  margin:0;font:400 13px/1.65 'IBM Plex Mono',monospace;white-space:pre-wrap;
-  overflow-x:auto;min-height:280px;box-shadow:var(--shadow)}
-pre.prompt .lab{color:var(--mono-dim)}
-.link{margin-top:12px;font-size:13.5px;color:var(--soft)}
-.link a{color:var(--leaf-ink);font-weight:600}
-
-.tools{margin:44px 0 10px}
-.toolgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.group{grid-column:1/-1;font:700 11px Archivo;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--leaf);margin:14px 0 2px;padding-top:10px;border-top:1px solid var(--line)}
-.tool{display:block;background:var(--panel);border:1px solid var(--line);border-radius:11px;
-  padding:12px 14px;text-decoration:none;color:inherit;transition:.12s;box-shadow:var(--shadow)}
-.tool:hover{border-color:var(--leaf);transform:translateY(-1px)}
-.tool .tn{font-weight:700;font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
-.tool .tn .ar{color:var(--leaf);font-size:13px}
-.tool .td{color:var(--soft);font-size:12.5px;margin-top:3px}
-.tool .try{margin-top:8px;font-size:11.5px;line-height:1.4;color:var(--ink);
-  background:var(--chip);border-left:2px solid var(--leaf);border-radius:0 6px 6px 0;padding:6px 9px}
-.tool .try b{color:var(--leaf-ink);font-weight:700}
-.badge{display:inline-block;margin-top:9px;font:600 10.5px Archivo;letter-spacing:.04em;
-  padding:2px 9px;border-radius:999px;color:var(--b);
-  background:color-mix(in srgb,var(--b) 15%,transparent);
-  border:1px solid color-mix(in srgb,var(--b) 45%,transparent)}
-.legend{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 4px;font-size:12.5px;color:var(--soft)}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
-
-footer{border-top:1px solid var(--line);margin-top:40px;padding:20px 0 44px;color:var(--soft);font-size:13px}
-footer b{color:var(--clay)}
-
-/* ---- case study + job colours ---- */
-.casebox{background:var(--sage);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:22px 0 6px;box-shadow:var(--shadow)}
-.cb-tag{font:700 11px Archivo;letter-spacing:.13em;text-transform:uppercase;color:var(--leaf)}
-.cb-h{font-family:Fraunces,serif;font-weight:900;font-size:23px;margin:4px 0 8px;line-height:1.1}
-.cb-p{font-size:14px;color:var(--ink);margin:0 0 12px;max-width:80ch;line-height:1.5}
-.cb-sub{font-size:12.5px;color:var(--soft);margin:0 0 10px}
-.jobs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media(max-width:820px){.jobs{grid-template-columns:1fr 1fr}}
-@media(max-width:460px){.jobs{grid-template-columns:1fr}}
-.job{border-left:4px solid var(--j);background:var(--panel);border-radius:0 9px 9px 0;padding:9px 12px}
-.job b{display:block;font-size:13px;color:var(--j)}
-.job span{font-size:11.5px;color:var(--soft);line-height:1.35}
-.jobchip{display:inline-block;font:700 9.5px Archivo;letter-spacing:.03em;text-transform:uppercase;margin:7px 0 0;padding:1px 8px;border-radius:5px;color:var(--j);background:color-mix(in srgb,var(--j) 15%,transparent);border:1px solid color-mix(in srgb,var(--j) 38%,transparent)}
-/* ---- how to use ---- */
-.how{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 4px}
-@media(max-width:820px){.how{grid-template-columns:1fr 1fr}}
-@media(max-width:460px){.how{grid-template-columns:1fr}}
-.howstep{display:flex;gap:11px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 13px;box-shadow:var(--shadow)}
-.howstep .hn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--leaf);color:#fff;font:900 15px Fraunces,serif;display:flex;align-items:center;justify-content:center}
-.howstep b{display:block;font-size:14px;margin-bottom:2px}
-.howstep b i{font-weight:400;font-style:italic;color:var(--soft)}
-.howstep span{font-size:12px;color:var(--soft);line-height:1.4}
-.steplabel{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:38px 0 14px;
-  font-family:Fraunces,serif;font-weight:900;font-size:20px;color:var(--ink)}
-.steplabel .sn{flex:none;width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--ground);
-  font-size:16px;display:inline-flex;align-items:center;justify-content:center}
-.steplabel .snote{font-family:Archivo,sans-serif;font-weight:500;font-size:12.5px;color:var(--clay)}
-.cpy{margin-left:6px;border:1px solid var(--leaf);background:transparent;color:var(--leaf-ink);
-  border-radius:6px;padding:1px 8px;font:600 10.5px Archivo;cursor:pointer;vertical-align:middle}
-.cpy:hover{background:var(--leaf);color:#fff}
-/* ---- worksheet ---- */
-.ws{margin:44px 0 10px;border-top:2px solid var(--leaf);padding-top:26px}
-.ws h2.wt{font-family:Fraunces,serif;font-weight:900;font-size:26px;margin:0 0 4px}
-.ws .sub{color:var(--soft);font-size:14px;margin:0 0 18px;max-width:72ch}
-.ws-head{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.ws-head label{display:flex;flex-direction:column;gap:5px;font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
-.ws-head input{border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:400 14px Archivo;background:var(--panel);color:var(--ink);min-width:240px}
-.ws-block{margin:24px 0}
-.ws-block>h3{font:700 13px Archivo;letter-spacing:.07em;text-transform:uppercase;color:var(--leaf-ink);margin:0 0 4px;display:flex;align-items:center;gap:9px}
-.ws-block>h3 .n{font-family:Fraunces,serif;font-weight:900;font-size:18px;color:#fff;background:var(--leaf);width:26px;height:26px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center}
-.ws-block .q{color:var(--soft);font-size:12.5px;margin:0 0 10px}
-table.log{width:100%;border-collapse:collapse}
-table.log th{background:var(--sage);color:var(--ink);font:700 10.5px Archivo;letter-spacing:.03em;text-align:left;padding:7px 8px;border:1px solid var(--line)}
-table.log td{border:1px solid var(--line);padding:0}
-table.log input{width:100%;border:0;background:transparent;padding:8px;font:400 12.5px Archivo;color:var(--ink)}
-table.log input:focus{outline:2px solid var(--leaf);outline-offset:-2px}
-.addrow{margin-top:9px;background:var(--chip);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 14px;font:600 12.5px Archivo;cursor:pointer}
-.addrow:hover{border-color:var(--leaf);color:var(--leaf-ink)}
-.wsfield{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:11px 13px;font:400 14px/1.5 Archivo;resize:none;overflow:hidden;min-height:50px}
-.wsfield:focus{outline:none;border-color:var(--leaf)}
-.find{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
-.find input.h{width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;font:700 14px Archivo;color:var(--ink);padding:2px 0 8px;margin-bottom:8px}
-.find input.h:focus{outline:none;border-color:var(--leaf)}
-.wsbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:22px 0 0}
-.pdfbtn{background:var(--leaf);color:#fff;border:0;border-radius:10px;padding:13px 24px;font:700 15px Archivo;cursor:pointer}
-.pdfbtn:hover{filter:brightness(1.06)}
-.saved{font-size:12.5px;color:var(--soft)}
-.printhead{display:none}
+.who{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 6px}
+.who label{display:flex;flex-direction:column;gap:4px;font:700 10.5px Archivo;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.who input{border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:400 14px Archivo;background:var(--panel);color:var(--ink);min-width:220px}
+.step{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--c,var(--leaf));border-radius:12px;padding:16px 18px;margin:16px 0;box-shadow:var(--shadow)}
+.step h2{font-family:Fraunces,serif;font-weight:900;font-size:19px;margin:0 0 3px;display:flex;align-items:center;gap:10px}
+.step h2 .n{background:var(--c,var(--leaf));color:#fff;width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;flex:none}
+.step .lead{color:var(--soft);font-size:13px;margin:0 0 12px}
+.do{background:var(--chip);border-radius:9px;padding:11px 13px;font-size:13.5px;margin:0 0 12px}
+.do b{color:var(--c,var(--leaf-ink))}
+.do ol{margin:6px 0 0;padding-left:20px}
+.do li{margin:3px 0}
+.openbtn{display:inline-flex;align-items:center;gap:7px;background:var(--c,var(--leaf));color:#fff;text-decoration:none;
+  border-radius:9px;padding:9px 15px;font:700 13.5px Archivo;margin-bottom:12px}
+.openbtn:hover{filter:brightness(1.06)}
+.copybtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:8px 13px;font:600 12.5px Archivo;cursor:pointer;margin-left:8px}
+.copybtn:hover{border-color:var(--leaf)}
+label.fl{display:block;font:700 11px Archivo;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin:2px 0 6px}
+textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--ground);color:var(--ink);
+  padding:11px 13px;font:400 14px/1.5 Archivo;resize:none;overflow:hidden;min-height:56px}
+textarea:focus{outline:none;border-color:var(--c,var(--leaf))}
+pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;margin:0 0 10px;font:400 12.5px/1.6 ui-monospace,monospace;white-space:pre-wrap}
+.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:22px 0 8px}
+.pdf{background:var(--clay);color:#fff;border:0;border-radius:10px;padding:13px 24px;font:700 15px Archivo;cursor:pointer}
+.pdf:hover{filter:brightness(1.06)}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--soft);border-radius:10px;padding:12px 16px;font:600 13px Archivo;cursor:pointer}
+.saved{font-size:12px;color:var(--soft)}
+.hint{font-size:12.5px;color:var(--clay);margin:4px 0 0}
+.more{margin:28px 0;border-top:1px solid var(--line);padding-top:14px}
+.more summary{font:700 12px Archivo;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);cursor:pointer}
+.more a{color:var(--leaf-ink);font-weight:600}
+.more ul{columns:2;font-size:13px;margin:10px 0 0;padding-left:18px}
+@media(max-width:520px){.more ul{columns:1}}
+.printonly{display:none}
 @media print{
   @page{margin:14mm}
-  header, .case, .eyebrow, .presets, .grid, .tools, footer, .addrow, .wsbar{display:none!important}
-  body{background:#fff;color:#000;padding:0 6mm}
-  .ws{border:0;margin:0;padding:0}
-  .printhead{display:block;margin-bottom:14px;border-bottom:2px solid #2f6b4f;padding-bottom:8px}
-  .ws h2.wt{display:none}
-  .ws .sub{display:none}
-  .ws-block{break-inside:avoid;margin:14px 0}
-  .wsfield,.find,table.log input,.ws-head input,.find input.h,table.log th{border-color:#aaa!important;background:#fff!important;color:#000!important}
-  .ws-block>h3 .n{background:#2f6b4f!important;color:#fff!important}
+  header .themebtn,.openbtn,.copybtn,.do,.step .lead,pre.prompt,.bar,.more,.case{display:none!important}
+  body{background:#fff;color:#000;padding:0}
+  .step{border:1px solid #bbb;border-left:5px solid #666;break-inside:avoid;box-shadow:none}
+  textarea{border-color:#bbb;background:#fff;color:#000}
+  .printonly{display:block;margin-bottom:10px;border-bottom:2px solid #2f6b4f;padding-bottom:6px}
+  .step h2 .n{background:#555!important}
 }
 </style>
 
@@ -190,332 +81,122 @@ table.log input:focus{outline:2px solid var(--leaf);outline-offset:-2px}
 <header>
   <div>
     <p class="brandline">Estudios de Mercado I · Tema 2 · Desk research</p>
-    <h1>Desk Research Workbench</h1>
-    <p class="lede">Gather public data with the tools, get an AI to help you make sense of it, write your answers, and save a PDF to hand in. Works for any country — just swap the search terms.</p>
+    <h1>Desk research in 2 checks</h1>
   </div>
   <button class="themebtn" id="theme">◐ Theme</button>
 </header>
 
-<section class="casebox">
-  <div class="cb-tag">Case study — start here</div>
-  <h2 class="cb-h">FreshlyCosmetics — a natural anti-aging launch in Spain</h2>
-  <p class="cb-p">FreshlyCosmetics (natural, 100% vegan, direct-to-consumer) wants to launch a facial <b>anti-aging</b> line. Before quoting an €8,000 survey, build a 360° picture from public data and come back with the exact question the survey should ask. <b>Researching another country?</b> Swap the search terms and use your own national statistics office.</p>
-  <p class="cb-sub">Your four research questions — each has a colour, and the tools below carry the same colour so you know which to use:</p>
-  <div class="jobs">
-    <div class="job" style="--j:#3b6fb5"><b>1 · Size the market</b><span>value, growth (CAGR), natural-cosmetics share</span></div>
-    <div class="job" style="--j:#2f8f8f"><b>2 · Trends &amp; needs</b><span>clean beauty, biotech, pro-aging; rising searches</span></div>
-    <div class="job" style="--j:#c9702f"><b>3 · Competition</b><span>traditional, pharmacy &amp; digital-native brands</span></div>
-    <div class="job" style="--j:#7a6bd0"><b>4 · Customer &amp; positioning</b><span>pains, gains, unmet niches, eco-premium gap</span></div>
-  </div>
-</section>
-
-<div class="how">
-  <div class="howstep"><span class="hn">1</span><div><b>Gather your data</b><span>Open a tool and follow its “Do this” step — hit <b>copy</b> to grab the exact search term. Free sources are enough.</span></div></div>
-  <div class="howstep"><span class="hn">2</span><div><b>Ask AI to help <i>(optional)</i></b><span>Pick a preset → copy the prompt → paste it into <b>ChatGPT / Claude</b> with your data. Not into a data tool.</span></div></div>
-  <div class="howstep"><span class="hn">3</span><div><b>Write your answers</b><span>Fill the worksheet: source log, findings, and the gaps that become your survey questions.</span></div></div>
-  <div class="howstep"><span class="hn">4</span><div><b>Save as PDF</b><span>Turn your worksheet into a PDF to hand in.</span></div></div>
+<div class="printonly">
+  <div style="font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase;color:#2f6b4f">Estudios de Mercado I · Tema 2 — Desk research worksheet</div>
 </div>
 
-<p class="steplabel"><span class="sn">1</span> Gather your data — the public-data toolkit</p>
-<div class="tools">
-  <p style="margin:0 0 10px;font-size:13.5px;color:var(--soft);max-width:74ch">You can do the whole activity with the <b style="color:var(--a-free)">free</b> sources. Each card tells you <b>what to do</b> in that tool and gives a <b>copy</b> button for the exact search term. Subscription tools only add depth. International student? Use the international / national blocks and your own country's stats office.</p>
-  <div class="legend">
-    <span><i style="background:var(--a-free)"></i>Free — open access</span>
-    <span><i style="background:var(--a-freemium)"></i>Free tier — limited, paid to go deep</span>
-    <span><i style="background:var(--a-paid)"></i>Subscription — the university may license it</span>
-  </div>
-  <div class="toolgrid" id="tools"></div>
+<div class="case">
+  <b>Case.</b> FreshlyCosmetics wants to launch a natural facial <b>anti-aging</b> line in Spain. In two quick checks — the <b>market size</b> and the <b>trends</b> — decide if it's worth a €8,000 survey and what that survey should ask. <b>Another country?</b> Swap the terms and use your own national statistics office.
 </div>
 
-<p class="steplabel"><span class="sn">2</span> Ask AI to help — build your analysis prompt <span class="snote">→ paste the result into ChatGPT / Claude, together with your data</span></p>
-<div class="presets" id="presets"></div>
-<div class="grid">
-  <div class="builder" id="builder"></div>
-  <div class="out">
-    <div class="outhead">
-      <h2>Your prompt</h2>
-      <button class="copy" id="copy">Copy prompt</button>
-    </div>
-    <pre class="prompt" id="prompt"></pre>
-    <p class="link" id="link"></p>
-  </div>
+<div class="who">
+  <label>Name / group <input id="w_name" placeholder="Group 3 — A. García"></label>
+  <label>Date <input id="w_date" placeholder="dd/mm/yyyy"></label>
 </div>
 
-<p class="steplabel"><span class="sn">3</span> Write your answers &amp; save your PDF <span class="snote">→ this is what you hand in</span></p>
-<section class="ws" id="worksheet">
-  <div class="printhead">
-    <div style="font:700 12px Archivo;letter-spacing:.1em;text-transform:uppercase;color:#2f6b4f">Estudios de Mercado I · Tema 2 · Secondary research &amp; desk research</div>
-    <div style="font:900 22px Fraunces,serif;margin-top:2px">Desk research worksheet — FreshlyCosmetics anti-aging</div>
+<!-- STEP 1 -->
+<div class="step" style="--c:var(--blue)">
+  <h2><span class="n">1</span> How big is the market?</h2>
+  <p class="lead">Find one credible figure for the market's size and how fast it grows.</p>
+  <a class="openbtn" href="https://www.google.com/search?q=natural+cosmetics+market+size+2024+report" target="_blank" rel="noopener">Open a search ↗</a>
+  <button class="copybtn" data-copy="natural cosmetics market size 2024">copy the search</button>
+  <div class="do"><b>Do this:</b>
+    <ol>
+      <li>Open 2 results (prefer a report or an association — <b>not</b> a blog).</li>
+      <li>Find the market <b>value</b> (€ or $) and its <b>growth %</b> (CAGR).</li>
+      <li>Write it below with <b>where it's from</b> and the <b>year</b>.</li>
+    </ol>
   </div>
-  <h2 class="wt">Your worksheet</h2>
-  <p class="sub">Do the research with the tools above, then fill this in. Click <b>Save as PDF</b> to hand it in. Everything you type is saved in this browser automatically — you can close the page and come back.</p>
+  <label class="fl" for="w_size">① Market size, growth & source</label>
+  <textarea id="w_size" placeholder="e.g. Natural cosmetics in Spain ≈ €1,050M, growing ~18%/yr (Kantar Beauty Trends 2024)"></textarea>
+</div>
 
-  <div class="ws-head">
-    <label>Name / group <input id="w_name" placeholder="e.g. Group 3 — A. García, L. Ruiz"></label>
-    <label>Date <input id="w_date" placeholder="dd/mm/yyyy"></label>
+<!-- STEP 2 -->
+<div class="step" style="--c:var(--green)">
+  <h2><span class="n">2</span> What's trending?</h2>
+  <p class="lead">See what people search for — it shows what they want, right now.</p>
+  <a class="openbtn" href="https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics%2Canti-ageing%2Cretinol" target="_blank" rel="noopener">Open Google Trends (ready) ↗</a>
+  <div class="do"><b>Do this:</b>
+    <ol>
+      <li>It opens comparing <b>natural cosmetics · anti-ageing · retinol</b>. Set your country (top left).</li>
+      <li>See which line is <b>rising</b>.</li>
+      <li>Scroll down to <b>“Related queries → Rising”</b> and copy <b>3</b> of them below.</li>
+    </ol>
   </div>
+  <label class="fl" for="w_trends">② The rising line + 3 rising queries</label>
+  <textarea id="w_trends" placeholder="e.g. 'anti-ageing' rising fastest. Rising queries: bakuchiol serum, vegan retinol, ..."></textarea>
+</div>
 
-  <div class="ws-block">
-    <h3><span class="n">A</span> Source log</h3>
-    <p class="q">One row per source. Record the fieldwork date and the definition, keep the link, and score each 1–5 (reliability · representativeness · currency — see 2.2).</p>
-    <table class="log"><thead><tr>
-      <th style="width:20%">Source</th><th style="width:26%">What it says (key figure)</th><th style="width:24%">Fieldwork date &amp; definition</th><th style="width:20%">Link</th><th style="width:10%">Score /5</th>
-    </tr></thead><tbody id="logbody"></tbody></table>
-    <button class="addrow" id="addrow" type="button">+ Add source</button>
-  </div>
+<!-- STEP 3 -->
+<div class="step" style="--c:var(--leaf)">
+  <h2><span class="n">3</span> Let AI help <span style="font:400 13px Archivo;color:var(--soft)">(optional)</span></h2>
+  <p class="lead">Copy this prompt, open ChatGPT or Claude, paste it — then paste your ① and ② into it. AI helps you conclude; it does not do the research.</p>
+  <a class="openbtn" href="https://chatgpt.com" target="_blank" rel="noopener">Open ChatGPT ↗</a>
+  <a class="openbtn" href="https://claude.ai" target="_blank" rel="noopener" style="--c:#7a6bd0">Open Claude ↗</a>
+  <button class="copybtn" id="copyprompt">copy the prompt</button>
+  <pre class="prompt" id="prompt"></pre>
+  <label class="fl" for="w_ai">③ Paste the AI's answer (or write your own conclusion)</label>
+  <textarea id="w_ai" placeholder="Paste the 5 bullets the AI gives you."></textarea>
+</div>
 
-  <div class="ws-block">
-    <h3><span class="n">B</span> Which source would you trust?</h3>
-    <p class="q">From the warm-up (Kantar study / beauty blog / Brand X release): which ONE figure do you put in front of the client, and what do you tell them about the other two?</p>
-    <textarea class="wsfield" id="w_trust" placeholder="I would cite … because … . I'd discard/caveat the other two because …"></textarea>
-  </div>
+<!-- STEP 4 -->
+<div class="step" style="--c:var(--clay)">
+  <h2><span class="n">4</span> Your decision</h2>
+  <p class="lead">One sentence — this is the point of the whole exercise.</p>
+  <label class="fl" for="w_dec">④ Is it worth a survey, and what should the survey ask?</label>
+  <textarea id="w_dec" placeholder="e.g. Yes — the market is small but growing fast; the survey should ask which anti-aging benefit buyers will pay a premium for."></textarea>
+</div>
 
-  <div class="ws-block">
-    <h3><span class="n">C</span> Findings — 3 to 5, each a full sentence</h3>
-    <p class="q">Each finding is a sentence backed by 2+ sources. Not “Market size” but “The natural anti-aging category is small but growing 4× faster than the mass market it takes share from.”</p>
-    <div id="findings"></div>
-    <button class="addrow" id="addfind" type="button">+ Add finding</button>
-  </div>
+<div class="bar">
+  <button class="pdf" id="pdf">⬇ Download PDF</button>
+  <button class="ghost" id="newcase">Start a new case</button>
+  <span class="saved" id="saved">Saved in this browser</span>
+</div>
+<p class="hint">Each case = one PDF. <b>Download your PDF before starting a new case</b> — a new case clears this one.</p>
 
-  <div class="ws-block">
-    <h3><span class="n">D</span> What is still unknown → the survey’s questions</h3>
-    <p class="q">The real deliverable: the gaps, written as the questions your €8,000 survey should ask (not as apologies).</p>
-    <textarea class="wsfield" id="w_gaps" placeholder="1) …  2) …  3) …"></textarea>
-  </div>
-
-  <div class="ws-block">
-    <h3><span class="n">E</span> AI use declaration</h3>
-    <p class="q">Which prompt(s), for which step, and how you verified every figure against the original source.</p>
-    <textarea class="wsfield" id="w_ai" placeholder="I used the ‘market sizing’ preset on … ; I checked each figure against …"></textarea>
-  </div>
-
-  <div class="wsbar">
-    <button class="pdfbtn" id="pdfbtn" type="button">⬇  Save as PDF</button>
-    <span class="saved" id="savedmsg">Saved automatically in this browser</span>
-    <button class="addrow" id="clearws" type="button">Clear worksheet</button>
-  </div>
-</section>
-
-<footer>
-  <b>Verify before you paste.</b> AI names the figure to trust poorly — that is the 2.2 judgement, and it is yours. Find the sources yourself, attach the documents, make the model build the matrix (not the prose), ask it to attack its own output, and check every number against the original. Declare your AI use in the practical. A fabricated citation scores zero.
-</footer>
+<details class="more">
+  <summary>More free tools (if you want to dig deeper)</summary>
+  <ul>
+    <li><a href="https://cosmeticseurope.eu" target="_blank" rel="noopener">Cosmetics Europe</a> — EU market data</li>
+    <li><a href="https://www.statista.com/search/?q=natural%20cosmetics%20market" target="_blank" rel="noopener">Statista</a> — market charts</li>
+    <li><a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener">Eurostat</a> — EU stats</li>
+    <li><a href="https://www.ine.es/en/" target="_blank" rel="noopener">INE</a> / your national stats office</li>
+    <li><a href="https://answerthepublic.com" target="_blank" rel="noopener">AnswerThePublic</a> — questions people ask</li>
+    <li><a href="https://www.similarweb.com/website/freshlycosmetics.com/" target="_blank" rel="noopener">SimilarWeb</a> — a brand's web traffic</li>
+  </ul>
+</details>
 </div>
 
 <script>
-const FIELDS=[
- {k:"role",n:"Role",hint:"who the AI is",v:"Act as a market-research analyst specialised in consumer beauty and cosmetics."},
- {k:"task",n:"Task",hint:"what to do",v:"Summarise, compare across sources, and extract evidence-based insights."},
- {k:"context",n:"Context",hint:"the objective",v:"I am analysing the natural / clean-beauty facial ANTI-AGING market in Spain for FreshlyCosmetics, to support a launch decision (product, positioning, channel, price)."},
- {k:"sources",n:"Sources",hint:"what you attach",v:"The 2022–2024 reports, Google Trends exports, reviews and articles I attach. Use only what is in them."},
- {k:"format",n:"Format",hint:"output shape",v:"A comparative table first, then bullet insights, then a short conclusion."},
- {k:"criteria",n:"Criteria",hint:"the angle",v:"Market size & CAGR, key trends, competitors, opportunities and risks — flag every source disagreement and its cause."}
-];
-const PRESETS=[
- {id:"size",label:"Market sizing",k:"Statista·Euromonitor·Mintel",link:["Statista","https://www.statista.com"],set:{
-   task:"Give market value, volume, CAGR and the natural-cosmetics share of total cosmetics.",
-   sources:"The attached Statista, Euromonitor and Mintel reports on natural / anti-aging cosmetics in Spain (2022–2024).",
-   format:"A comparative table of each source's figure, its definition and its fieldwork date; then the reconciled range.",
-   criteria:"Market size, growth and share only. Flag every disagreement and explain it (usually the definition). If a number is not in the attachments, say 'not in the sources'."}},
- {id:"trends",label:"Trends & search",k:"Google Trends·SEMrush",link:["Google Trends","https://trends.google.es"],set:{
-   task:"Identify rising related queries, seasonality and top regions, and turn them into questionnaire wording.",
-   sources:"The attached Google Trends and SEMrush exports for Spain (natural anti-aging, retinol alternatives, clean beauty, SPF).",
-   format:"A ranked table of queries with intent (informational / commercial / transactional), then 10 questionnaire-ready phrasings.",
-   criteria:"Relative interest, not absolute; note where volume is too low to trust; surface the customer's own words."}},
- {id:"comp",label:"Competitive map",k:"SimilarWeb·CNMV",link:["SimilarWeb","https://www.similarweb.com"],set:{
-   task:"Build a competitive matrix of traditional, pharmacy and digital-native brands.",
-   sources:"The attached SimilarWeb data, CNMV filings and annual reports.",
-   format:"A matrix: brands down the side, the dimensions the CUSTOMER chooses on across the top (efficacy, naturalness, price, channel, digital share); one positioning line per brand; mark the gap.",
-   criteria:"Cite the source for each cell; define the competitive set from the customer's side, not the industry's."}},
- {id:"voice",label:"Customer language",k:"Talkwalker·reviews",link:["Talkwalker","https://www.talkwalker.com"],set:{
-   task:"Extract recurring pains and gains around natural anti-aging in the customer's OWN words.",
-   sources:"The attached reviews and social mentions (Amazon, Reddit, Instagram).",
-   format:"Five themes, each with two verbatim quotes and a one-line implication for FreshlyCosmetics.",
-   criteria:"Do not invent quotes — use only the attached text; separate what customers say from what they do."}},
- {id:"synth",label:"Full 360° synthesis",k:"all sources",link:["ChatGPT","https://chatgpt.com"],set:{
-   role:"Act as a senior market-research consultant.",
-   task:"Cross-analyse ALL attached sources and keep only findings backed by two or more of them.",
-   sources:"Every attached source on the Spanish natural anti-aging market.",
-   format:"(1) executive summary, (2) competitor comparison table, (3) the 5 biggest opportunities ranked by impact × feasibility, (4) the list of what is still UNKNOWN, written as the questions a primary survey should ask.",
-   criteria:"Every figure must trace to an attachment; name what is missing rather than filling it."}}
-];
-// [name, description, url, access, TRY (what to do — English), Q (exact term to copy/paste)]
-// Searches are in English so they work for international students; swap terms for your own market.
-const TOOLS=[
- ["Sector & associations — FREE (do the activity with these)",[
-   ["Cosmetics Europe","Free EU cosmetics market size & growth","https://cosmeticseurope.eu","free","Click 'Market data', open the latest report, and note the cosmetics value and its % growth.","natural organic cosmetics market data"],
-   ["STANPA","Spanish cosmetics association (annual report)","https://www.stanpa.com","free","Open the latest annual report (memoria) and note the market size and growth.","cosmetics market report"],
-   ["Company annual reports","A rival's real revenue, segments & strategy","https://www.google.com/search?q=cosmetics+company+annual+report+skincare+segment","free","Open a rival's annual report and find its skincare/beauty segment revenue and strategy.","cosmetics annual report skincare segment"],
-   ["Trade press","Free news & summaries of paid market reports","https://www.google.com/search?q=natural+cosmetics+market+2024+report","free","Open 2-3 recent articles and note any market-size or growth figure (with its source).","natural cosmetics market 2024 report"]]],
- ["Market reports & databases — subscription (optional depth)",[
-   ["Statista","Ready market-size charts & industry stats","https://www.statista.com/search/?q=natural%20cosmetics%20market","paid","Type the search, open a chart, and note the market size and the growth rate (CAGR).","natural cosmetics market size"],
-   ["Euromonitor","Market size & shares by category and country","https://www.euromonitor.com","paid","Go to Skin Care → Naturals for your country and note value and market share.","skin care naturals"],
-   ["Mintel","Consumer behaviour & trend reports","https://www.mintel.com","paid","Search facial skincare / anti-aging and note the top consumer trends.","facial skincare anti-aging"],
-   ["IBISWorld","Industry size, growth & company financials","https://www.ibisworld.com","paid","Open the cosmetics report and note industry size, growth and number of firms.","cosmetics manufacturing"]]],
- ["Institutional — international (free)",[
-   ["Eurostat","Comparable EU statistics","https://ec.europa.eu/eurostat","free","Open the household-consumption dataset (COICOP) and read the personal-care spend.","household consumption personal care"],
-   ["OECD Data","Cross-country economic & social data","https://data.oecd.org","free","Search 'household expenditure' and note the figure for your country.","household expenditure"],
-   ["World Bank","Global development indicators","https://data.worldbank.org","free","Open 'household final consumption' and the 25-54 population for your country.","household final consumption expenditure"],
-   ["IMF Data","Macro & financial, by country","https://www.imf.org/en/Data","free","Pick your country and note GDP, inflation and income.","GDP inflation"],
-   ["UN Data","Global statistics hub","https://data.un.org","free","Search 'population by age' and 'household consumption' for your country.","population by age"],
-   ["Our World in Data","Curated global datasets & charts","https://ourworldindata.org","free","Open the ageing-population chart for your country and read the trend.","ageing population"],
-   ["Google Dataset Search","Find open datasets anywhere","https://datasetsearch.research.google.com/search?query=cosmetics%20consumption","free","Type your topic; open a dataset and check its source and date before using it.","cosmetics consumption"]]],
- ["National statistics offices — pick YOUR country (free)",[
-   ["Destatis (Germany)","Federal statistics — Germany's INE","https://www.destatis.de/EN","free","Search 'private consumption' and 'population by age'; open the table and read the figures.","private consumption; population by age"],
-   ["SCB (Sweden)","Statistics Sweden","https://www.scb.se/en","free","Search 'household expenditure' and 'population by age'; open the table.","household expenditure; population by age"],
-   ["Statistics Denmark","Danmarks Statistik — StatBank","https://www.dst.dk/en","free","Open StatBank and find consumption and population by age.","consumption; population by age"],
-   ["INEGI (Mexico)","Mexico's statistics institute","https://www.inegi.org.mx","free","Open ENIGH (household spending) and population by age.","gasto de los hogares ENIGH"],
-   ["ONS (UK)","Office for National Statistics","https://www.ons.gov.uk","free","Search 'household spending' and 'population by age'; open the dataset.","household spending; population by age"],
-   ["More countries","Directory of every national office","https://unstats.un.org/home/nso_sites/","free","Find your country's office, then get household spend on personal care and population by age.","household spending personal care"]]],
- ["Institutional — Spain (free)",[
-   ["INE (España)","Demography, prices, society","https://www.ine.es/en/","free","Open the Household Budget Survey (personal care) and population by age.","household budget survey"],
-   ["Banco de España","Macro & financial series","https://www.bde.es/bde/en/","free","Search 'household disposable income' and note the latest figure.","household disposable income"],
-   ["ICEX","Foreign markets & sector notes","https://www.icex.es","free","Open the cosmetics sector page and note market/export data.","cosmetics sector"],
-   ["datos.gob.es","Open public data","https://datos.gob.es","free","Search 'cosmetics' or 'consumption' and open an official dataset.","cosmetics"],
-   ["CNMV","Listed-company filings","https://www.cnmv.es","free","Search the listed rival (e.g. Puig) and open its filings/results.","Puig"],
-   ["CIS","Opinion & attitudes (barómetros)","https://www.cis.es","free","Search 'consumer habits' and read the relevant barómetro.","consumer habits"]]],
- ["Digital behaviour & trends",[
-   ["Google Trends","How interest rises/falls over time & by region","https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics%2Canti-ageing%2Cretinol","free","It opens with 3 terms compared — see which rises, set your country, then scroll to 'Related queries → Rising' and copy them.","natural cosmetics, anti-ageing, retinol"],
-   ["Keyword Planner","Monthly search volume — needs a free Google Ads account","https://ads.google.com/home/tools/keyword-planner/","free","It opens Google Ads: create a free account, then Tools → Planning → Keyword Planner → 'Discover new keywords' and enter your terms. No account? Use Google Trends instead.","natural anti-aging serum, vegan face cream"],
-   ["AnswerThePublic","Real questions people ask","https://answerthepublic.com","freemium","Type a term in the search box and press search; it draws a wheel of the real questions people ask — copy the useful ones.","anti-aging cream"],
-   ["Exploding Topics","Trends taking off before they go mainstream","https://explodingtopics.com","freemium","Search a trend and read its growth curve and whether it's still rising.","clean beauty"],
-   ["SimilarWeb","Web-traffic analytics — opens the site","https://www.similarweb.com/website/freshlycosmetics.com/","freemium","It opens the brand's page — note monthly visits, top countries and traffic sources; then compare 2 rivals.","freshlycosmetics.com"],
-   ["SEMrush","What a brand ranks for online & its rivals","https://www.semrush.com","freemium","Enter the brand's domain and read its top keywords and organic competitors.","freshlycosmetics.com"],
-   ["Talkwalker","What people say online about a topic & the mood","https://www.talkwalker.com","paid","Search your topic and read the number of mentions and the positive/negative split.","natural anti-aging cosmetics"]]],
- ["AI assistants (paste your prompt here — not into a data tool)",[
-   ["ChatGPT","Summarise & compare","https://chatgpt.com","freemium","Paste a preset from Step 2 AND attach the data you gathered; ask for a table + insights.",""],
-   ["Claude","Long-document analysis","https://claude.ai","freemium","Best for long PDFs — paste the 360° preset and attach your reports.",""],
-   ["Perplexity","Search with citations","https://www.perplexity.ai/search?q=natural%20anti-aging%20cosmetics%20market%20size%2C%20with%20sources","freemium","It opens a cited search — refine the question and check the sources it cites.","natural anti-aging cosmetics market size, with sources"],
-   ["NotebookLM","Grounded on your sources","https://notebooklm.google.com","free","Upload your PDFs, then ask it to build a source × question table.",""],
-   ["Elicit","Literature review","https://elicit.com","freemium","Type your research question; it finds and summarises relevant studies.","consumer acceptance of natural anti-aging ingredients"],
-   ["Consensus","Evidence-based answers","https://consensus.app","freemium","Ask a yes/no research question; it answers with the weight of evidence.","does bakuchiol work as a retinol alternative"]]]
-];
-const ACCESS={free:["Free","--a-free"],freemium:["Free tier","--a-freemium"],paid:["Subscription","--a-paid"]};
+const PROMPT=`Act as a market-research analyst. I researched the natural anti-aging cosmetics market.
+- Market size & growth: [PASTE YOUR ① HERE]
+- Rising search trends: [PASTE YOUR ② HERE]
+In 5 short bullet points tell me: (1) is this market attractive and why, (2) the single biggest opportunity, (3) the ONE question a customer survey should ask. Use ONLY what I gave you; if something is missing, say so.`;
+document.getElementById('prompt').textContent=PROMPT;
 
-const state={}; let active=null, curLink=null;
-FIELDS.forEach(f=>state[f.k]=f.v);
-
-const builder=document.getElementById('builder');
-FIELDS.forEach((f,i)=>{
-  const d=document.createElement('div');d.className='field';
-  d.innerHTML=`<label><span class="num">${i+1}</span><span class="nm">${f.n}</span><span class="hint">${f.hint}</span></label>`;
-  const ta=document.createElement('textarea');ta.id='f_'+f.k;ta.value=f.v;ta.rows=2;
-  ta.addEventListener('input',()=>{state[f.k]=ta.value;render();});
-  d.appendChild(ta);builder.appendChild(d);
-});
-
-const presetsEl=document.getElementById('presets');
-PRESETS.forEach(p=>{
-  const b=document.createElement('button');b.className='preset';b.setAttribute('aria-pressed','false');
-  b.innerHTML=`${p.label} <span class="k">${p.k}</span>`;
-  b.onclick=()=>{
-    Object.keys(p.set).forEach(k=>{state[k]=p.set[k];const t=document.getElementById('f_'+k);if(t)t.value=p.set[k];});
-    active=(active===p.id)?null:p.id;curLink=active?p.link:null;
-    [...presetsEl.children].forEach((c,i)=>c.setAttribute('aria-pressed',PRESETS[i].id===active));
-    render();
-  };
-  presetsEl.appendChild(b);
-});
-
-const JOBMETA={size:['Size','#3b6fb5'],trends:['Trends','#2f8f8f'],comp:['Competition','#c9702f'],cust:['Customer','#7a6bd0'],ai:['Analyse','#3f8f63']};
-const JOB={"Cosmetics Europe":"size","STANPA":"size","Company annual reports":"comp","Trade press":"comp",
-"Statista":"size","Euromonitor":"size","Mintel":"size","IBISWorld":"size",
-"Eurostat":"size","OECD Data":"size","World Bank":"size","IMF Data":"size","UN Data":"size","Our World in Data":"size","Google Dataset Search":"size",
-"Destatis (Germany)":"size","SCB (Sweden)":"size","Statistics Denmark":"size","INEGI (Mexico)":"size","ONS (UK)":"size","More countries":"size",
-"INE (España)":"size","Banco de España":"size","ICEX":"size","datos.gob.es":"size","CNMV":"comp","CIS":"cust",
-"Google Trends":"trends","Keyword Planner":"trends","AnswerThePublic":"trends","Exploding Topics":"trends",
-"SimilarWeb":"comp","SEMrush":"comp","Talkwalker":"cust",
-"ChatGPT":"ai","Claude":"ai","Perplexity":"ai","NotebookLM":"ai","Elicit":"ai","Consensus":"ai"};
-function copyText(text,btn){
-  const done=()=>{if(btn){const o=btn.textContent;btn.textContent='copied ✓';setTimeout(()=>btn.textContent=(o.indexOf('prompt')>-1?'Copy prompt':'copy'),1200);}};
-  const fallback=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}catch(e){if(btn)btn.textContent='press Ctrl+C';}};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fallback);}else{fallback();}
-}
-const toolsEl=document.getElementById('tools');
-TOOLS.forEach(([g,items])=>{
-  const h=document.createElement('div');h.className='group';h.textContent=g;toolsEl.appendChild(h);
-  items.forEach(([n,d,u,ac,tryit,q])=>{
-    const a=document.createElement('a');a.className='tool';a.href=u;a.target='_blank';a.rel='noopener';
-    const [lab,tok]=ACCESS[ac];
-    const jk=JOB[n];const jm=jk?JOBMETA[jk]:null;
-    a.innerHTML=`<div class="tn">${n}<span class="ar">↗</span></div>`+
-      (jm?`<span class="jobchip" style="--j:${jm[1]}">${jm[0]}</span>`:``)+
-      `<div class="td">${d}</div>`;
-    if(tryit){
-      const tr=document.createElement('div');tr.className='try';
-      tr.innerHTML=`<b>Do this:</b> ${tryit} `;
-      if(q){
-        const cb=document.createElement('button');cb.type='button';cb.className='cpy';cb.textContent='copy';
-        cb.title='Copy: '+q;
-        cb.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation();copyText(q,cb);});
-        tr.appendChild(cb);
-      }
-      a.appendChild(tr);
-    }
-    const bd=document.createElement('span');bd.className='badge';bd.style.cssText='--b:var('+tok+')';bd.textContent=lab;
-    a.appendChild(bd);
-    toolsEl.appendChild(a);
-  });
-});
-
-function render(){
-  const P=document.getElementById('prompt');
-  const L=[["ROLE","role"],["TASK","task"],["CONTEXT","context"],["SOURCES","sources"],["FORMAT","format"],["CRITERIA","criteria"]];
-  P.innerHTML=L.map(([lab,k])=>`<span class="lab">${lab}: </span>${escapeHtml(state[k]||'')}`).join("\n\n");
-  const lk=document.getElementById('link');
-  lk.innerHTML=curLink?`Start here → <a href="${curLink[1]}" target="_blank" rel="noopener">${curLink[0]}</a>. Pull the data, attach it, then paste this prompt.`:
-   `Tip: click a preset above to target one source, or edit the six parts directly.`;
-}
-function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-function plain(){return[["ROLE","role"],["TASK","task"],["CONTEXT","context"],["SOURCES","sources"],["FORMAT","format"],["CRITERIA","criteria"]].map(([lab,k])=>`${lab}: ${state[k]||''}`).join("\n\n");}
-
-document.getElementById('copy').onclick=(e)=>{
-  const b=e.currentTarget;const txt=plain();
-  const ok=()=>{b.textContent="Copied ✓";b.classList.add('ok');setTimeout(()=>{b.textContent="Copy prompt";b.classList.remove('ok');},1400);};
-  const fb=()=>{try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(_){b.textContent="press Ctrl+C";}};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(fb);}else{fb();}
-};
-
-const root=document.documentElement, tb=document.getElementById('theme');
-tb.onclick=()=>{const cur=root.getAttribute('data-theme');
-  const next=cur==='dark'?'light':cur==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');
-  root.setAttribute('data-theme',next);};
-render();
-
-// ---- worksheet (fill in, autosave, export PDF) ----
-const WS_KEY="mkt3600_tema2_ws";
-const logbody=document.getElementById('logbody'), findings=document.getElementById('findings');
-function autogrow(t){t.style.height='auto';t.style.height=(t.scrollHeight+2)+'px';}
-function val(id){const e=document.getElementById(id);return e?e.value:'';}
-function logRow(v){v=v||{};const tr=document.createElement('tr');
-  ['source','claim','date','link','score'].forEach(k=>{const td=document.createElement('td');const inp=document.createElement('input');
-    inp.dataset.k=k;inp.value=v[k]||'';if(k==='score'){inp.style.textAlign='center';}
-    inp.addEventListener('input',saveWs);td.appendChild(inp);tr.appendChild(td);});
-  logbody.appendChild(tr);}
-function findRow(v){v=v||{};const d=document.createElement('div');d.className='find';
-  const h=document.createElement('input');h.className='h';h.placeholder='Finding as a sentence…';h.dataset.k='h';h.value=v.h||'';
-  const e=document.createElement('textarea');e.className='wsfield';e.placeholder='Evidence: which sources, which figures.';e.dataset.k='e';e.value=v.e||'';e.rows=2;
-  h.addEventListener('input',saveWs);e.addEventListener('input',()=>{autogrow(e);saveWs();});
-  d.appendChild(h);d.appendChild(e);findings.appendChild(d);autogrow(e);}
-function collect(){
-  const log=[...logbody.querySelectorAll('tr')].map(tr=>{const o={};tr.querySelectorAll('input').forEach(i=>o[i.dataset.k]=i.value);return o;});
-  const finds=[...findings.querySelectorAll('.find')].map(d=>({h:d.querySelector('input.h').value,e:d.querySelector('textarea').value}));
-  return {name:val('w_name'),date:val('w_date'),trust:val('w_trust'),gaps:val('w_gaps'),ai:val('w_ai'),log,finds};}
-let saveT;
-function saveWs(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(WS_KEY,JSON.stringify(collect()));
-  document.getElementById('savedmsg').textContent='Saved ✓ '+new Date().toLocaleTimeString();}catch(_){}} ,300);}
-(function initWs(){
-  let s={};try{s=JSON.parse(localStorage.getItem(WS_KEY)||'{}');}catch(_){}
-  [['w_name','name'],['w_date','date'],['w_trust','trust'],['w_gaps','gaps'],['w_ai','ai']].forEach(([id,k])=>{
-    const el=document.getElementById(id);if(!el)return;el.value=s[k]||'';
-    if(el.tagName==='TEXTAREA'){el.addEventListener('input',()=>{autogrow(el);saveWs();});autogrow(el);}
-    else{el.addEventListener('input',saveWs);}});
-  ((s.log&&s.log.length)?s.log:[{},{},{},{},{}]).forEach(logRow);
-  ((s.finds&&s.finds.length)?s.finds:[{},{},{}]).forEach(findRow);
-  document.getElementById('addrow').onclick=()=>{logRow();saveWs();};
-  document.getElementById('addfind').onclick=()=>{findRow();saveWs();};
-  document.getElementById('pdfbtn').onclick=()=>{if(!val('w_date')){const d=document.getElementById('w_date');if(d)d.value=new Date().toLocaleDateString();}window.print();};
-  document.getElementById('clearws').onclick=()=>{if(confirm('Clear the whole worksheet? This cannot be undone.')){localStorage.removeItem(WS_KEY);location.reload();}};
+const KEY='mkt3600_2check';
+const ids=['w_name','w_date','w_size','w_trends','w_ai','w_dec'];
+function grow(t){t.style.height='auto';t.style.height=(t.scrollHeight+2)+'px';}
+let st;
+function save(){clearTimeout(st);st=setTimeout(()=>{const o={};ids.forEach(i=>o[i]=(document.getElementById(i)||{}).value||'');
+  try{localStorage.setItem(KEY,JSON.stringify(o));document.getElementById('saved').textContent='Saved ✓ '+new Date().toLocaleTimeString();}catch(_){}} ,300);}
+(function init(){let s={};try{s=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(_){}
+  ids.forEach(i=>{const el=document.getElementById(i);if(!el)return;el.value=s[i]||'';
+    el.addEventListener('input',()=>{if(el.tagName==='TEXTAREA')grow(el);save();});if(el.tagName==='TEXTAREA')grow(el);});
 })();
+function copy(text,btn){const ok=()=>{const o=btn.textContent;btn.textContent='copied ✓';setTimeout(()=>btn.textContent=o,1200);};
+  const fb=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(_){btn.textContent='Ctrl+C';}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fb);}else{fb();}}
+document.querySelectorAll('.copybtn[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy,b));
+document.getElementById('copyprompt').onclick=(e)=>copy(PROMPT,e.currentTarget);
+document.getElementById('pdf').onclick=()=>{if(!document.getElementById('w_date').value)document.getElementById('w_date').value=new Date().toLocaleDateString();window.print();};
+document.getElementById('newcase').onclick=()=>{if(confirm('Start a new case? This clears the current worksheet. Download your PDF first if you need it.')){localStorage.removeItem(KEY);location.reload();}};
+const root=document.documentElement;document.getElementById('theme').onclick=()=>{const c=root.getAttribute('data-theme');root.setAttribute('data-theme',c==='dark'?'light':c==='light'?'dark':(matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));};
 </script>
 
 </body>
