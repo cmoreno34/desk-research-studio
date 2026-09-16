@@ -63,6 +63,12 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
 .more a{color:var(--leaf-ink);font-weight:600}
 .more ul{columns:2;font-size:13px;margin:10px 0 0;padding-left:18px}
 @media(max-width:520px){.more ul{columns:1}}
+.tools2{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.t2{display:flex;flex-direction:column;gap:1px;background:var(--ground);border:1px solid var(--line);border-radius:9px;padding:8px 12px;text-decoration:none;color:var(--ink);font:700 13px Archivo;transition:.12s}
+.t2 span{font:500 10.5px Archivo;color:var(--soft)}
+.t2:hover{border-color:var(--c,var(--leaf));transform:translateY(-1px)}
+.t2.main{background:var(--c,var(--leaf));color:#fff;border-color:transparent}
+.t2.main span{color:rgba(255,255,255,.82)}
 .printonly{display:none}
 @media print{
   @page{margin:14mm}
@@ -103,8 +109,14 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
 <div class="step" style="--c:var(--blue)">
   <h2><span class="n">1</span> How big is the market?</h2>
   <p class="lead">Find one credible figure for the market's size and how fast it grows.</p>
-  <a class="openbtn" href="https://www.google.com/search?q=natural+cosmetics+market+size+2024+report" target="_blank" rel="noopener">Open a search ↗</a>
-  <button class="copybtn" data-copy="natural cosmetics market size 2024">copy the search</button>
+  <div class="tools2">
+    <a class="t2" href="https://cosmeticseurope.eu" target="_blank" rel="noopener">Cosmetics Europe<span>free EU market data</span></a>
+    <a class="t2" href="https://www.statista.com/search/?q=natural%20cosmetics%20market" target="_blank" rel="noopener">Statista<span>market-size charts</span></a>
+    <a class="t2" href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener">Eurostat<span>EU consumption</span></a>
+    <a class="t2" href="https://www.ine.es/en/" target="_blank" rel="noopener">INE / your office<span>household spend</span></a>
+    <a class="t2" href="https://www.google.com/search?q=natural+cosmetics+market+size+2024+report" target="_blank" rel="noopener">Web search<span>reports &amp; news</span></a>
+  </div>
+  <button class="copybtn" data-copy="natural cosmetics market size 2024">copy the search term</button>
   <div class="do"><b>Do this:</b>
     <ol>
       <li>Open 2 results (prefer a report or an association — <b>not</b> a blog).</li>
@@ -120,7 +132,11 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
 <div class="step" style="--c:var(--green)">
   <h2><span class="n">2</span> What's trending?</h2>
   <p class="lead">See what people search for — it shows what they want, right now.</p>
-  <a class="openbtn" href="https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics%2Canti-ageing%2Cretinol" target="_blank" rel="noopener">Open Google Trends (ready) ↗</a>
+  <div class="tools2">
+    <a class="t2 main" href="https://trends.google.com/trends/explore?date=today%205-y&q=natural%20cosmetics%2Canti-ageing%2Cretinol" target="_blank" rel="noopener">Google Trends<span>opens ready · rising queries</span></a>
+    <a class="t2" href="https://answerthepublic.com" target="_blank" rel="noopener">AnswerThePublic<span>questions people ask</span></a>
+    <a class="t2" href="https://explodingtopics.com" target="_blank" rel="noopener">Exploding Topics<span>emerging trends</span></a>
+  </div>
   <div class="do"><b>Do this:</b>
     <ol>
       <li>It opens comparing <b>natural cosmetics · anti-ageing · retinol</b>. Set your country (top left).</li>
@@ -135,7 +151,7 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
 <!-- STEP 3 -->
 <div class="step" style="--c:var(--leaf)">
   <h2><span class="n">3</span> Let AI help <span style="font:400 13px Archivo;color:var(--soft)">(optional)</span></h2>
-  <p class="lead">Copy this prompt, open ChatGPT or Claude, paste it — then paste your ① and ② into it. AI helps you conclude; it does not do the research.</p>
+  <p class="lead">The prompt below <b>already has your ① and ② in it</b> — it updates as you type. Just copy it, open ChatGPT or Claude, and paste. AI helps you conclude; it does not do the research.</p>
   <a class="openbtn" href="https://chatgpt.com" target="_blank" rel="noopener">Open ChatGPT ↗</a>
   <a class="openbtn" href="https://claude.ai" target="_blank" rel="noopener" style="--c:#7a6bd0">Open Claude ↗</a>
   <button class="copybtn" id="copyprompt">copy the prompt</button>
@@ -149,7 +165,7 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
   <h2><span class="n">4</span> Your decision</h2>
   <p class="lead">One sentence — this is the point of the whole exercise.</p>
   <label class="fl" for="w_dec">④ Is it worth a survey, and what should the survey ask?</label>
-  <textarea id="w_dec" placeholder="e.g. Yes — the market is small but growing fast; the survey should ask which anti-aging benefit buyers will pay a premium for."></textarea>
+  <textarea id="w_dec" style="min-height:120px" placeholder="e.g. Yes — the market is small (~€1bn) but growing ~18%/yr, faster than mass cosmetics, and searches for natural anti-aging are rising. It's worth a survey. The survey should ask which anti-aging benefit (visible results, clean ingredients, price) buyers will pay a premium for, and at what price."></textarea>
 </div>
 
 <div class="bar">
@@ -173,11 +189,16 @@ pre.prompt{background:#14211b;color:#e8efe6;border-radius:10px;padding:14px;marg
 </div>
 
 <script>
-const PROMPT=`Act as a market-research analyst. I researched the natural anti-aging cosmetics market.
-- Market size & growth: [PASTE YOUR ① HERE]
-- Rising search trends: [PASTE YOUR ② HERE]
+function buildPrompt(){
+  const g=id=>{const e=document.getElementById(id);return e&&e.value.trim();};
+  const size=g('w_size')||'[fill in ① above]';
+  const tr=g('w_trends')||'[fill in ② above]';
+  return `Act as a market-research analyst. I researched the natural anti-aging cosmetics market.
+- Market size & growth: ${size}
+- Rising search trends: ${tr}
 In 5 short bullet points tell me: (1) is this market attractive and why, (2) the single biggest opportunity, (3) the ONE question a customer survey should ask. Use ONLY what I gave you; if something is missing, say so.`;
-document.getElementById('prompt').textContent=PROMPT;
+}
+function refreshPrompt(){document.getElementById('prompt').textContent=buildPrompt();}
 
 const KEY='mkt3600_2check';
 const ids=['w_name','w_date','w_size','w_trends','w_ai','w_dec'];
@@ -187,13 +208,15 @@ function save(){clearTimeout(st);st=setTimeout(()=>{const o={};ids.forEach(i=>o[
   try{localStorage.setItem(KEY,JSON.stringify(o));document.getElementById('saved').textContent='Saved ✓ '+new Date().toLocaleTimeString();}catch(_){}} ,300);}
 (function init(){let s={};try{s=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(_){}
   ids.forEach(i=>{const el=document.getElementById(i);if(!el)return;el.value=s[i]||'';
-    el.addEventListener('input',()=>{if(el.tagName==='TEXTAREA')grow(el);save();});if(el.tagName==='TEXTAREA')grow(el);});
+    el.addEventListener('input',()=>{if(el.tagName==='TEXTAREA')grow(el);save();if(i==='w_size'||i==='w_trends')refreshPrompt();});
+    if(el.tagName==='TEXTAREA')grow(el);});
+  refreshPrompt();
 })();
 function copy(text,btn){const ok=()=>{const o=btn.textContent;btn.textContent='copied ✓';setTimeout(()=>btn.textContent=o,1200);};
   const fb=()=>{try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok();}catch(_){btn.textContent='Ctrl+C';}};
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok).catch(fb);}else{fb();}}
 document.querySelectorAll('.copybtn[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy,b));
-document.getElementById('copyprompt').onclick=(e)=>copy(PROMPT,e.currentTarget);
+document.getElementById('copyprompt').onclick=(e)=>copy(buildPrompt(),e.currentTarget);
 document.getElementById('pdf').onclick=()=>{if(!document.getElementById('w_date').value)document.getElementById('w_date').value=new Date().toLocaleDateString();window.print();};
 document.getElementById('newcase').onclick=()=>{if(confirm('Start a new case? This clears the current worksheet. Download your PDF first if you need it.')){localStorage.removeItem(KEY);location.reload();}};
 const root=document.documentElement;document.getElementById('theme').onclick=()=>{const c=root.getAttribute('data-theme');root.setAttribute('data-theme',c==='dark'?'light':c==='light'?'dark':(matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark'));};
